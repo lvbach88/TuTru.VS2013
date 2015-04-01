@@ -1,5 +1,5 @@
 ﻿using Data;
-using LookUpTable;
+using Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace UnitTest
         static void Main(string[] args)
         {
             CanChi.Init();
-            LookUpTable.LookUpTable.Init();
+            LookUpTable.Init();
             var dan = from chi in CanChi.MuoiHaiDiaChi
                       where chi.Ten == Chi.Dan
                       select chi;
@@ -21,7 +21,7 @@ namespace UnitTest
             var ngo = CanChi.MuoiHaiDiaChi.Single(u => u.Ten == Chi.Ngo);
 
             NguHanh nh;
-            LookUpTable.LookUpTable.NapAm.TryGetValue(new Tuple<Can, Chi>(Can.At, Chi.None),out nh);
+            LookUpTable.NapAm.TryGetValue(new Tuple<Can, Chi>(Can.At, Chi.None),out nh);
 
             Console.ReadKey();
         }

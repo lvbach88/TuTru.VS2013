@@ -7,7 +7,7 @@
     <ProjectGuid>{360220C2-E8EC-43E8-909E-CB1E8A1F944C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LookUpTable</RootNamespace>
+    <RootNamespace>Business</RootNamespace>
     <AssemblyName>Dictionary</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
