@@ -39,6 +39,19 @@ namespace Data
         Hoi
     }
 
+    public enum NguHanh
+    {
+        None = 0,
+        Kim,
+        Thuy,
+        Moc,
+        Hoa,
+        Tho
+    }
+
+    /// <summary>
+    /// DiaChi with name and hidden Can
+    /// </summary>
     public class DiaChi
     {
         public Chi Ten { get; private set; }
@@ -55,6 +68,11 @@ namespace Data
         }
     }
 
+    /// <summary>
+    /// This class contains only 2 sets
+    /// one is MuoiHaiDiaChi
+    /// the other is MuoiThienCan
+    /// </summary>
     public static class CanChi
     {
         public static LinkedList<DiaChi> MuoiHaiDiaChi;
@@ -93,6 +111,29 @@ namespace Data
 
             MuoiThienCan.AddLast(Can.Nham);
             MuoiThienCan.AddLast(Can.Quy);
+        }
+    }
+
+    /// <summary>
+    /// Represent one Tru
+    /// </summary>
+    public class Tru
+    {
+        public Can ThienCan { get; private set; }
+        public DiaChi DiaChi { get; private set; }
+
+        public List<string> CanSao;
+        public List<string> ChiSao;
+        
+
+        public Tru(Can can, DiaChi chi)
+        {
+            this.ThienCan = can;
+            this.DiaChi = chi;
+
+            this.CanSao = new List<string>();
+            this.ChiSao = new List<string>();
+
         }
     }
 
