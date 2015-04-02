@@ -12,16 +12,16 @@ namespace UnitTest
     {
         static void Main(string[] args)
         {
-            CanChi.Init();
+            TongHopCanChi.Init();
             LookUpTable.Init();
-            var dan = from chi in CanChi.MuoiHaiDiaChi
-                      where chi.Ten == Chi.Dan
+            var dan = from chi in TongHopCanChi.MuoiHaiDiaChi
+                      where chi.Ten == ChiEnum.Dan
                       select chi;
 
-            var ngo = CanChi.MuoiHaiDiaChi.Single(u => u.Ten == Chi.Ngo);
+            var ngo = TongHopCanChi.MuoiHaiDiaChi.Single(u => u.Ten == ChiEnum.Ngo);
 
-            NguHanh nh;
-            LookUpTable.NapAm.TryGetValue(new Tuple<Can, Chi>(Can.At, Chi.None),out nh);
+            NguHanhEnum nh;
+            LookUpTable.NapAm.TryGetValue(new Tuple<CanEnum, ChiEnum>(CanEnum.At, ChiEnum.None),out nh);
 
             Console.ReadKey();
         }

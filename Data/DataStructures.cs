@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Data
 {
 
-    public enum Can
+    public enum CanEnum
     {
         None = 0,
         Giap,
@@ -22,7 +22,7 @@ namespace Data
         Quy
     }
 
-    public enum Chi
+    public enum ChiEnum
     {
         None = 0,
         Ti,
@@ -39,7 +39,7 @@ namespace Data
         Hoi
     }
 
-    public enum NguHanh
+    public enum NguHanhEnum
     {
         None = 0,
         Kim,
@@ -49,17 +49,23 @@ namespace Data
         Tho
     }
 
+    public enum AmDuongEnum
+    {
+        Am = 0,
+        Duong = 1
+    }
+
     /// <summary>
     /// DiaChi with name and hidden Can
     /// </summary>
     public class DiaChi
     {
-        public Chi Ten { get; private set; }
-        public Can BanKhi { get; private set; }
-        public Can TrungKhi { get; private set; }
-        public Can TapKhi { get; private set; }
+        public ChiEnum Ten { get; private set; }
+        public CanEnum BanKhi { get; private set; }
+        public CanEnum TrungKhi { get; private set; }
+        public CanEnum TapKhi { get; private set; }
 
-        public DiaChi(Chi chi, Can bankhi, Can trungkhi, Can tapkhi)
+        public DiaChi(ChiEnum chi, CanEnum bankhi, CanEnum trungkhi, CanEnum tapkhi)
         {
             this.Ten = chi;
             this.BanKhi = bankhi;
@@ -69,48 +75,67 @@ namespace Data
     }
 
     /// <summary>
+    /// ThienCan with name and NguHanh, Am Duong
+    /// </summary>
+    public class ThienCan
+    {
+        public CanEnum Can { get; private set; }
+        public NguHanhEnum NguHanh { get; private set; }
+        public AmDuongEnum AmDuong { get; private set; }
+
+        public ThienCan(CanEnum can, NguHanhEnum nguHanh, AmDuongEnum amDuong)
+        {
+            this.Can = can;
+            this.NguHanh = nguHanh;
+            this.AmDuong = amDuong;
+        }
+    }
+
+    /// <summary>
     /// This class contains only 2 sets
     /// one is MuoiHaiDiaChi
     /// the other is MuoiThienCan
     /// </summary>
-    public static class CanChi
+    public static class TongHopCanChi
     {
         public static LinkedList<DiaChi> MuoiHaiDiaChi;
-        public static LinkedList<Can> MuoiThienCan;
+        public static LinkedList<ThienCan> MuoiThienCan;
 
         public static void Init()
         {
             MuoiHaiDiaChi = new LinkedList<DiaChi>();
             
-            MuoiHaiDiaChi.AddLast(new DiaChi(Chi.Ti, Can.Quy, Can.None, Can.None));
-            MuoiHaiDiaChi.AddLast(new DiaChi(Chi.Suu, Can.Ky, Can.Quy, Can.Tan));
-            MuoiHaiDiaChi.AddLast(new DiaChi(Chi.Dan, Can.Giap, Can.Binh, Can.Mau));
-            MuoiHaiDiaChi.AddLast(new DiaChi(Chi.Mao, Can.At, Can.None, Can.None));
+            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Ti, CanEnum.Quy, CanEnum.None, CanEnum.None));
+            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Suu, CanEnum.Ky, CanEnum.Quy, CanEnum.Tan));
+            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Dan, CanEnum.Giap, CanEnum.Binh, CanEnum.Mau));
+            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Mao, CanEnum.At, CanEnum.None, CanEnum.None));
             
-            MuoiHaiDiaChi.AddLast(new DiaChi(Chi.Thin, Can.Mau, Can.At, Can.Quy));
-            MuoiHaiDiaChi.AddLast(new DiaChi(Chi.Ty, Can.Binh, Can.Canh, Can.Mau));
-            MuoiHaiDiaChi.AddLast(new DiaChi(Chi.Ngo, Can.Dinh, Can.Ky, Can.None));
-            MuoiHaiDiaChi.AddLast(new DiaChi(Chi.Mui, Can.Ky, Can.Dinh, Can.At));
+            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Thin, CanEnum.Mau, CanEnum.At, CanEnum.Quy));
+            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Ty, CanEnum.Binh, CanEnum.Canh, CanEnum.Mau));
+            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Ngo, CanEnum.Dinh, CanEnum.Ky, CanEnum.None));
+            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Mui, CanEnum.Ky, CanEnum.Dinh, CanEnum.At));
 
-            MuoiHaiDiaChi.AddLast(new DiaChi(Chi.Than, Can.Canh, Can.Nham, Can.Mau));
-            MuoiHaiDiaChi.AddLast(new DiaChi(Chi.Dau, Can.Tan, Can.None, Can.None));
-            MuoiHaiDiaChi.AddLast(new DiaChi(Chi.Tuat, Can.Mau, Can.Tan, Can.Dinh));
-            MuoiHaiDiaChi.AddLast(new DiaChi(Chi.Hoi, Can.Nham, Can.Giap, Can.None));
+            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Than, CanEnum.Canh, CanEnum.Nham, CanEnum.Mau));
+            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Dau, CanEnum.Tan, CanEnum.None, CanEnum.None));
+            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Tuat, CanEnum.Mau, CanEnum.Tan, CanEnum.Dinh));
+            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Hoi, CanEnum.Nham, CanEnum.Giap, CanEnum.None));
 
-            MuoiThienCan = new LinkedList<Can>();
+            MuoiThienCan = new LinkedList<ThienCan>();
 
-            MuoiThienCan.AddLast(Can.Giap);
-            MuoiThienCan.AddLast(Can.At);
-            MuoiThienCan.AddLast(Can.Binh);
-            MuoiThienCan.AddLast(Can.Dinh);
+            MuoiThienCan.AddLast(new ThienCan(CanEnum.Giap, NguHanhEnum.Moc, AmDuongEnum.Duong));
+            MuoiThienCan.AddLast(new ThienCan(CanEnum.At, NguHanhEnum.Moc, AmDuongEnum.Am));
 
-            MuoiThienCan.AddLast(Can.Mau);
-            MuoiThienCan.AddLast(Can.Ky);
-            MuoiThienCan.AddLast(Can.Canh);
-            MuoiThienCan.AddLast(Can.Tan);
+            MuoiThienCan.AddLast(new ThienCan(CanEnum.Binh, NguHanhEnum.Hoa, AmDuongEnum.Duong));
+            MuoiThienCan.AddLast(new ThienCan(CanEnum.Dinh, NguHanhEnum.Hoa, AmDuongEnum.Am));
 
-            MuoiThienCan.AddLast(Can.Nham);
-            MuoiThienCan.AddLast(Can.Quy);
+            MuoiThienCan.AddLast(new ThienCan(CanEnum.Mau, NguHanhEnum.Tho, AmDuongEnum.Duong));
+            MuoiThienCan.AddLast(new ThienCan(CanEnum.Ky, NguHanhEnum.Tho, AmDuongEnum.Am));
+
+            MuoiThienCan.AddLast(new ThienCan(CanEnum.Canh, NguHanhEnum.Kim, AmDuongEnum.Duong));
+            MuoiThienCan.AddLast(new ThienCan(CanEnum.Tan, NguHanhEnum.Kim, AmDuongEnum.Am));
+
+            MuoiThienCan.AddLast(new ThienCan(CanEnum.Nham, NguHanhEnum.Thuy, AmDuongEnum.Duong));
+            MuoiThienCan.AddLast(new ThienCan(CanEnum.Quy, NguHanhEnum.Thuy, AmDuongEnum.Am));
         }
     }
 
@@ -119,14 +144,14 @@ namespace Data
     /// </summary>
     public class Tru
     {
-        public Can ThienCan { get; private set; }
+        public CanEnum ThienCan { get; private set; }
         public DiaChi DiaChi { get; private set; }
 
         public List<string> CanSao;
         public List<string> ChiSao;
         
 
-        public Tru(Can can, DiaChi chi)
+        public Tru(CanEnum can, DiaChi chi)
         {
             this.ThienCan = can;
             this.DiaChi = chi;

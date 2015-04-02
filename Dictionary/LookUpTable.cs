@@ -9,11 +9,22 @@ namespace Business
 {
     public static class LookUpTable
     {
-        public static Dictionary<Tuple<Can, Chi>, NguHanh> NapAm;
+        /// <summary>
+        /// To be used for Tru
+        /// Return NguHanh given Can and Chi
+        /// </summary>
+        public static Dictionary<Tuple<CanEnum, ChiEnum>, NguHanhEnum> NapAm;
+
+        /// <summary>
+        /// To be used for Ngu Hanh Tuong Sinh Tuong Khac
+        /// Return Sinh, Duoc Sinh, Khac, Bi Khac respectively
+        /// </summary>
+        public static Dictionary<NguHanhEnum, Tuple<NguHanhEnum, NguHanhEnum, NguHanhEnum, NguHanhEnum>> NguHanhSinhKhac;
 
         public static void Init()
         {
             napAm_Init();
+            nguHanhSinhKhac_Init();
         }
 
         /// <summary>
@@ -21,107 +32,107 @@ namespace Business
         /// </summary>
         private static void napAm_Init()
         {
-            var napAm = new Dictionary<Tuple<Can, Chi>, NguHanh>();
+            var napAm = new Dictionary<Tuple<CanEnum, ChiEnum>, NguHanhEnum>();
 
             //this method will create NapAm table which contains invalid Tru, e.g. At Thin...
-            foreach (var chi in CanChi.MuoiHaiDiaChi)
+            foreach (var diaChi in TongHopCanChi.MuoiHaiDiaChi)
             {
-                foreach (var can in CanChi.MuoiThienCan)
+                foreach (var thienCan in TongHopCanChi.MuoiThienCan)
                 {
-                    switch (chi.Ten)
+                    switch (diaChi.Ten)
                     {
-                        case Chi.Ti:
-                        case Chi.Ngo:
-                        case Chi.Suu:
-                        case Chi.Mui:
+                        case ChiEnum.Ti:
+                        case ChiEnum.Ngo:
+                        case ChiEnum.Suu:
+                        case ChiEnum.Mui:
 
-                            if (can == Can.Giap || can == Can.At)
+                            if (thienCan.Can == CanEnum.Giap || thienCan.Can == CanEnum.At)
                             {
-                                napAm.Add(new Tuple<Can, Chi>(can, chi.Ten), NguHanh.Kim);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Kim);
                             }
 
-                            if (can == Can.Binh || can == Can.Dinh)
+                            if (thienCan.Can == CanEnum.Binh || thienCan.Can == CanEnum.Dinh)
                             {
-                                napAm.Add(new Tuple<Can, Chi>(can, chi.Ten), NguHanh.Thuy);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Thuy);
                             }
 
-                            if (can == Can.Mau || can == Can.Ky)
+                            if (thienCan.Can == CanEnum.Mau || thienCan.Can == CanEnum.Ky)
                             {
-                                napAm.Add(new Tuple<Can, Chi>(can, chi.Ten), NguHanh.Hoa);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Hoa);
                             }
 
-                            if (can == Can.Canh || can == Can.Tan)
+                            if (thienCan.Can == CanEnum.Canh || thienCan.Can == CanEnum.Tan)
                             {
-                                napAm.Add(new Tuple<Can, Chi>(can, chi.Ten), NguHanh.Moc);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Moc);
                             }
 
-                            if (can == Can.Nham || can == Can.Quy)
+                            if (thienCan.Can == CanEnum.Nham || thienCan.Can == CanEnum.Quy)
                             {
-                                napAm.Add(new Tuple<Can, Chi>(can, chi.Ten), NguHanh.Tho);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Tho);
                             }
 
                             break;
 
-                        case Chi.Dan:
-                        case Chi.Than:
-                        case Chi.Mao:
-                        case Chi.Dau:
+                        case ChiEnum.Dan:
+                        case ChiEnum.Than:
+                        case ChiEnum.Mao:
+                        case ChiEnum.Dau:
                             
-                            if (can == Can.Giap || can == Can.At)
+                            if (thienCan.Can == CanEnum.Giap || thienCan.Can == CanEnum.At)
                             {
-                                napAm.Add(new Tuple<Can, Chi>(can, chi.Ten), NguHanh.Thuy);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Thuy);
                             }
 
-                            if (can == Can.Binh || can == Can.Dinh)
+                            if (thienCan.Can == CanEnum.Binh || thienCan.Can == CanEnum.Dinh)
                             {
-                                napAm.Add(new Tuple<Can, Chi>(can, chi.Ten), NguHanh.Hoa);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Hoa);
                             }
 
-                            if (can == Can.Mau || can == Can.Ky)
+                            if (thienCan.Can == CanEnum.Mau || thienCan.Can == CanEnum.Ky)
                             {
-                                napAm.Add(new Tuple<Can, Chi>(can, chi.Ten), NguHanh.Tho);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Tho);
                             }
 
-                            if (can == Can.Canh || can == Can.Tan)
+                            if (thienCan.Can == CanEnum.Canh || thienCan.Can == CanEnum.Tan)
                             {
-                                napAm.Add(new Tuple<Can, Chi>(can, chi.Ten), NguHanh.Moc);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Moc);
                             }
 
-                            if (can == Can.Nham || can == Can.Quy)
+                            if (thienCan.Can == CanEnum.Nham || thienCan.Can == CanEnum.Quy)
                             {
-                                napAm.Add(new Tuple<Can, Chi>(can, chi.Ten), NguHanh.Kim);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Kim);
                             }
 
                             break;
 
-                        case Chi.Thin:
-                        case Chi.Tuat:
-                        case Chi.Ty:
-                        case Chi.Hoi:
+                        case ChiEnum.Thin:
+                        case ChiEnum.Tuat:
+                        case ChiEnum.Ty:
+                        case ChiEnum.Hoi:
 
-                            if (can == Can.Giap || can == Can.At)
+                            if (thienCan.Can == CanEnum.Giap || thienCan.Can == CanEnum.At)
                             {
-                                napAm.Add(new Tuple<Can, Chi>(can, chi.Ten), NguHanh.Hoa);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Hoa);
                             }
 
-                            if (can == Can.Binh || can == Can.Dinh)
+                            if (thienCan.Can == CanEnum.Binh || thienCan.Can == CanEnum.Dinh)
                             {
-                                napAm.Add(new Tuple<Can, Chi>(can, chi.Ten), NguHanh.Tho);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Tho);
                             }
 
-                            if (can == Can.Mau || can == Can.Ky)
+                            if (thienCan.Can == CanEnum.Mau || thienCan.Can == CanEnum.Ky)
                             {
-                                napAm.Add(new Tuple<Can, Chi>(can, chi.Ten), NguHanh.Moc);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Moc);
                             }
 
-                            if (can == Can.Canh || can == Can.Tan)
+                            if (thienCan.Can == CanEnum.Canh || thienCan.Can == CanEnum.Tan)
                             {
-                                napAm.Add(new Tuple<Can, Chi>(can, chi.Ten), NguHanh.Kim);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Kim);
                             }
 
-                            if (can == Can.Nham || can == Can.Quy)
+                            if (thienCan.Can == CanEnum.Nham || thienCan.Can == CanEnum.Quy)
                             {
-                                napAm.Add(new Tuple<Can, Chi>(can, chi.Ten), NguHanh.Thuy);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Thuy);
                             }
 
                             break;
@@ -132,6 +143,21 @@ namespace Business
             }
 
             NapAm = napAm;
+        }
+
+        private static void nguHanhSinhKhac_Init()
+        {
+            NguHanhSinhKhac = new Dictionary<NguHanhEnum, Tuple<NguHanhEnum, NguHanhEnum, NguHanhEnum, NguHanhEnum>>();
+            NguHanhSinhKhac.Add(NguHanhEnum.Kim,
+                new Tuple<NguHanhEnum, NguHanhEnum, NguHanhEnum, NguHanhEnum>(NguHanhEnum.Thuy, NguHanhEnum.Tho, NguHanhEnum.Moc, NguHanhEnum.Hoa));
+            NguHanhSinhKhac.Add(NguHanhEnum.Thuy,
+                new Tuple<NguHanhEnum, NguHanhEnum, NguHanhEnum, NguHanhEnum>(NguHanhEnum.Moc, NguHanhEnum.Kim, NguHanhEnum.Hoa, NguHanhEnum.Tho));
+            NguHanhSinhKhac.Add(NguHanhEnum.Moc,
+                new Tuple<NguHanhEnum, NguHanhEnum, NguHanhEnum, NguHanhEnum>(NguHanhEnum.Hoa, NguHanhEnum.Thuy, NguHanhEnum.Tho, NguHanhEnum.Kim));
+            NguHanhSinhKhac.Add(NguHanhEnum.Hoa,
+                new Tuple<NguHanhEnum, NguHanhEnum, NguHanhEnum, NguHanhEnum>(NguHanhEnum.Tho, NguHanhEnum.Moc, NguHanhEnum.Kim, NguHanhEnum.Thuy));
+            NguHanhSinhKhac.Add(NguHanhEnum.Tho,
+                new Tuple<NguHanhEnum, NguHanhEnum, NguHanhEnum, NguHanhEnum>(NguHanhEnum.Kim, NguHanhEnum.Hoa, NguHanhEnum.Thuy, NguHanhEnum.Moc));
         }
 
     }
