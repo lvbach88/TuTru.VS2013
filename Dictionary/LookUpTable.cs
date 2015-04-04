@@ -160,5 +160,65 @@ namespace Business
                 new Tuple<NguHanhEnum, NguHanhEnum, NguHanhEnum, NguHanhEnum>(NguHanhEnum.Kim, NguHanhEnum.Hoa, NguHanhEnum.Thuy, NguHanhEnum.Moc));
         }
 
+        /// <summary>
+        /// Return the phase of Vong Truong Sinh given "can ngay" and "chi can tim" 
+        /// </summary>
+        /// <param name="canNgay">"can ngay"</param>
+        /// <param name="chi">"chi can tim"</param>
+        /// <returns></returns>
+        public static GiaiDoanTruongSinh VongTruongSinh(CanEnum canNgay, ChiEnum chi)
+        {
+            int direction = 1; //1: forward, -1: backward
+            int start = 0;
+ 
+            switch (canNgay)
+            {
+                case CanEnum.None:
+                    break;
+                case CanEnum.Giap:
+                    start = 11; //Hoi
+                    direction = 1;
+                    break;
+                case CanEnum.At:
+                    start = 6; //Ngo
+                    direction = -1;
+                    break;
+                case CanEnum.Binh:
+                case CanEnum.Mau:
+                    start = 2; //Dan
+                    direction = 1;
+                    break;
+                case CanEnum.Dinh:
+                case CanEnum.Ky:
+                    start = 9; //Dau
+                    direction = -1;
+                    break;
+                case CanEnum.Canh:
+                    start = 5; //Ty
+                    direction = 1;
+                    break;
+                case CanEnum.Tan:
+                    start = 0; //Ti
+                    direction = -1;
+                    break;
+                case CanEnum.Nham:
+                    start = 8; //Than
+                    direction = 1;
+                    break;
+                case CanEnum.Quy:
+                    start = 3; //Mao
+                    direction = -1;
+                    break;
+                default:
+                    break;
+            }
+
+            int dest = TongHopCanChi.MuoiHaiDiaChi.FindIndex(u => u.Ten == chi);
+            int n = TongHopCanChi.MuoiHaiDiaChi.Count;
+
+            int steps = (direction * (dest - start) + n) % n;
+
+            return (GiaiDoanTruongSinh)(steps + 1); //GiaiDoanTruongSinh starts with 1
+        }
     }
 }

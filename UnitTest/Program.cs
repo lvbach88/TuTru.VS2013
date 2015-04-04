@@ -20,8 +20,10 @@ namespace UnitTest
 
             var ngo = TongHopCanChi.MuoiHaiDiaChi.Single(u => u.Ten == ChiEnum.Ngo);
 
-            NguHanhEnum nh;
-            LookUpTable.NapAm.TryGetValue(new Tuple<CanEnum, ChiEnum>(CanEnum.At, ChiEnum.None),out nh);
+            //NguHanhEnum nh;
+            //LookUpTable.NapAm.TryGetValue(new Tuple<CanEnum, ChiEnum>(CanEnum.At, ChiEnum.None),out nh);
+
+            var vts = LookUpTable.VongTruongSinh(CanEnum.Quy, ChiEnum.Mao);
 
             Console.ReadKey();
         }

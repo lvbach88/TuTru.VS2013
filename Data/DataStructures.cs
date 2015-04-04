@@ -55,6 +55,24 @@ namespace Data
         Duong = 1
     }
 
+    public enum GiaiDoanTruongSinh
+    {
+        None = 0,
+        TruongSinh = 1,
+        MocDuc = 2,
+        QuanDoi = 3,
+        LamQuan = 4,
+        DeVuong = 5,
+        Suy = 6,
+        Benh = 7,
+        Tu = 8,
+        Mo = 9,
+        Tuyet = 10,
+        Thai = 11,
+        Duong = 12
+
+    }
+
     /// <summary>
     /// DiaChi with name and hidden Can
     /// </summary>
@@ -98,44 +116,44 @@ namespace Data
     /// </summary>
     public static class TongHopCanChi
     {
-        public static LinkedList<DiaChi> MuoiHaiDiaChi;
-        public static LinkedList<ThienCan> MuoiThienCan;
+        public static List<DiaChi> MuoiHaiDiaChi;
+        public static List<ThienCan> MuoiThienCan;
 
         public static void Init()
         {
-            MuoiHaiDiaChi = new LinkedList<DiaChi>();
+            MuoiHaiDiaChi = new List<DiaChi>();
             
-            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Ti, CanEnum.Quy, CanEnum.None, CanEnum.None));
-            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Suu, CanEnum.Ky, CanEnum.Quy, CanEnum.Tan));
-            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Dan, CanEnum.Giap, CanEnum.Binh, CanEnum.Mau));
-            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Mao, CanEnum.At, CanEnum.None, CanEnum.None));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Ti, CanEnum.Quy, CanEnum.None, CanEnum.None));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Suu, CanEnum.Ky, CanEnum.Quy, CanEnum.Tan));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Dan, CanEnum.Giap, CanEnum.Binh, CanEnum.Mau));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Mao, CanEnum.At, CanEnum.None, CanEnum.None));
             
-            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Thin, CanEnum.Mau, CanEnum.At, CanEnum.Quy));
-            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Ty, CanEnum.Binh, CanEnum.Canh, CanEnum.Mau));
-            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Ngo, CanEnum.Dinh, CanEnum.Ky, CanEnum.None));
-            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Mui, CanEnum.Ky, CanEnum.Dinh, CanEnum.At));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Thin, CanEnum.Mau, CanEnum.At, CanEnum.Quy));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Ty, CanEnum.Binh, CanEnum.Canh, CanEnum.Mau));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Ngo, CanEnum.Dinh, CanEnum.Ky, CanEnum.None));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Mui, CanEnum.Ky, CanEnum.Dinh, CanEnum.At));
 
-            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Than, CanEnum.Canh, CanEnum.Nham, CanEnum.Mau));
-            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Dau, CanEnum.Tan, CanEnum.None, CanEnum.None));
-            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Tuat, CanEnum.Mau, CanEnum.Tan, CanEnum.Dinh));
-            MuoiHaiDiaChi.AddLast(new DiaChi(ChiEnum.Hoi, CanEnum.Nham, CanEnum.Giap, CanEnum.None));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Than, CanEnum.Canh, CanEnum.Nham, CanEnum.Mau));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Dau, CanEnum.Tan, CanEnum.None, CanEnum.None));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Tuat, CanEnum.Mau, CanEnum.Tan, CanEnum.Dinh));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Hoi, CanEnum.Nham, CanEnum.Giap, CanEnum.None));
 
-            MuoiThienCan = new LinkedList<ThienCan>();
+            MuoiThienCan = new List<ThienCan>();
 
-            MuoiThienCan.AddLast(new ThienCan(CanEnum.Giap, NguHanhEnum.Moc, AmDuongEnum.Duong));
-            MuoiThienCan.AddLast(new ThienCan(CanEnum.At, NguHanhEnum.Moc, AmDuongEnum.Am));
+            MuoiThienCan.Add(new ThienCan(CanEnum.Giap, NguHanhEnum.Moc, AmDuongEnum.Duong));
+            MuoiThienCan.Add(new ThienCan(CanEnum.At, NguHanhEnum.Moc, AmDuongEnum.Am));
 
-            MuoiThienCan.AddLast(new ThienCan(CanEnum.Binh, NguHanhEnum.Hoa, AmDuongEnum.Duong));
-            MuoiThienCan.AddLast(new ThienCan(CanEnum.Dinh, NguHanhEnum.Hoa, AmDuongEnum.Am));
+            MuoiThienCan.Add(new ThienCan(CanEnum.Binh, NguHanhEnum.Hoa, AmDuongEnum.Duong));
+            MuoiThienCan.Add(new ThienCan(CanEnum.Dinh, NguHanhEnum.Hoa, AmDuongEnum.Am));
 
-            MuoiThienCan.AddLast(new ThienCan(CanEnum.Mau, NguHanhEnum.Tho, AmDuongEnum.Duong));
-            MuoiThienCan.AddLast(new ThienCan(CanEnum.Ky, NguHanhEnum.Tho, AmDuongEnum.Am));
+            MuoiThienCan.Add(new ThienCan(CanEnum.Mau, NguHanhEnum.Tho, AmDuongEnum.Duong));
+            MuoiThienCan.Add(new ThienCan(CanEnum.Ky, NguHanhEnum.Tho, AmDuongEnum.Am));
 
-            MuoiThienCan.AddLast(new ThienCan(CanEnum.Canh, NguHanhEnum.Kim, AmDuongEnum.Duong));
-            MuoiThienCan.AddLast(new ThienCan(CanEnum.Tan, NguHanhEnum.Kim, AmDuongEnum.Am));
+            MuoiThienCan.Add(new ThienCan(CanEnum.Canh, NguHanhEnum.Kim, AmDuongEnum.Duong));
+            MuoiThienCan.Add(new ThienCan(CanEnum.Tan, NguHanhEnum.Kim, AmDuongEnum.Am));
 
-            MuoiThienCan.AddLast(new ThienCan(CanEnum.Nham, NguHanhEnum.Thuy, AmDuongEnum.Duong));
-            MuoiThienCan.AddLast(new ThienCan(CanEnum.Quy, NguHanhEnum.Thuy, AmDuongEnum.Am));
+            MuoiThienCan.Add(new ThienCan(CanEnum.Nham, NguHanhEnum.Thuy, AmDuongEnum.Duong));
+            MuoiThienCan.Add(new ThienCan(CanEnum.Quy, NguHanhEnum.Thuy, AmDuongEnum.Am));
         }
     }
 
