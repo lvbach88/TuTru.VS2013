@@ -162,14 +162,14 @@ namespace Data
     /// </summary>
     public class Tru
     {
-        public CanEnum ThienCan { get; private set; }
+        public ThienCan ThienCan { get; private set; }
         public DiaChi DiaChi { get; private set; }
 
         public List<string> CanSao;
         public List<string> ChiSao;
         
 
-        public Tru(CanEnum can, DiaChi chi)
+        public Tru(ThienCan can, DiaChi chi)
         {
             this.ThienCan = can;
             this.DiaChi = chi;

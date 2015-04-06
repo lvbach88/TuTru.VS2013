@@ -25,6 +25,8 @@ namespace UnitTest
 
             var vts = LookUpTable.VongTruongSinh(CanEnum.Quy, ChiEnum.Mao);
 
+            var truNguHoDon = LookUpTable.NguHoDon(CanEnum.Quy, ChiEnum.Hoi);
+
             Console.ReadKey();
         }
     }

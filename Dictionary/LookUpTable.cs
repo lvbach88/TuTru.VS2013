@@ -89,6 +89,61 @@ namespace Business
             return (GiaiDoanTruongSinh)(steps + 1); //GiaiDoanTruongSinh starts with 1
         }
 
+        /// <summary>
+        /// Find the correct Tru with Can and Chi
+        /// </summary>
+        /// <param name="canNam">finding is based on canNam</param>
+        /// <param name="chiToBeFound">to-be-found Chi</param>
+        /// <returns>Tru with Can and Chi</returns>
+        public static Tru NguHoDon(CanEnum canNam, ChiEnum chiToBeFound)
+        {
+            CanEnum canStart = CanEnum.None;
+            ChiEnum chiStart = ChiEnum.Dan;
+
+            switch (canNam)
+            {
+                case CanEnum.None:
+                    break;
+                case CanEnum.Giap:
+                case CanEnum.Ky:
+                    canStart = CanEnum.Binh;
+                    break;
+                case CanEnum.At:
+                case CanEnum.Canh:
+                    canStart = CanEnum.Mau;
+                    break;
+                case CanEnum.Binh:
+                case CanEnum.Tan:
+                    canStart = CanEnum.Canh;
+                    break;
+                case CanEnum.Dinh:
+                case CanEnum.Nham:
+                    canStart = CanEnum.Nham;
+                    break;
+                case CanEnum.Mau:
+                case CanEnum.Quy:
+                    canStart = CanEnum.Giap;
+                    break;
+                default:
+                    break;
+            }
+
+            int nChi = TongHopCanChi.MuoiHaiDiaChi.Count;
+            int chiStartIndex = TongHopCanChi.MuoiHaiDiaChi.FindIndex(u => u.Ten == chiStart);
+            int chiDestIndex = TongHopCanChi.MuoiHaiDiaChi.FindIndex(u => u.Ten == chiToBeFound);
+            int steps = (chiDestIndex - chiStartIndex + nChi) % nChi;
+
+            int canStartIndex = TongHopCanChi.MuoiThienCan.FindIndex(u => u.Can == canStart);
+            int nCan = TongHopCanChi.MuoiThienCan.Count;
+            int canDestIndex = (canStartIndex + steps) % nCan;
+
+
+            var thienCan = TongHopCanChi.MuoiThienCan[canDestIndex];
+            var diaChi = TongHopCanChi.MuoiHaiDiaChi[chiDestIndex];
+            
+
+            return new Tru(thienCan, diaChi);
+        }
 
         /// <summary>
         /// Create NapAm dictionary
