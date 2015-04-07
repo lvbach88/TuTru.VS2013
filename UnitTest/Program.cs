@@ -27,6 +27,8 @@ namespace UnitTest
 
             var truNguHoDon = LookUpTable.NguHoDon(CanEnum.Quy, ChiEnum.Hoi);
 
+            var truNguThuDon = LookUpTable.NguThuDon(CanEnum.Quy, ChiEnum.Hoi);
+
             Console.ReadKey();
         }
     }
