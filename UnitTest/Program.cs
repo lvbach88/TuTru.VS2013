@@ -29,6 +29,11 @@ namespace UnitTest
 
             var truNguThuDon = LookUpTable.NguThuDon(CanEnum.Quy, ChiEnum.Hoi);
 
+            var canNgay = new ThienCan(CanEnum.At);
+            var can = new ThienCan(CanEnum.Giap);
+
+            SettingRules.SetThapThan(canNgay, can);
+
             Console.ReadKey();
         }
     }

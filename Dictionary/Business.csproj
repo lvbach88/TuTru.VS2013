@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="LookUpTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingRules.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

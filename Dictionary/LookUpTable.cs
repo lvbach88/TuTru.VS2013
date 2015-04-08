@@ -34,7 +34,7 @@ namespace Business
         /// <param name="canNgay">"can ngay"</param>
         /// <param name="chi">"chi can tim"</param>
         /// <returns></returns>
-        public static GiaiDoanTruongSinh VongTruongSinh(CanEnum canNgay, ChiEnum chi)
+        public static GiaiDoanTruongSinhEnum VongTruongSinh(CanEnum canNgay, ChiEnum chi)
         {
             int direction = 1; //1: forward, -1: backward
             int start = 0;
@@ -86,7 +86,7 @@ namespace Business
 
             int steps = (direction * (dest - start) + n) % n;
 
-            return (GiaiDoanTruongSinh)(steps + 1); //GiaiDoanTruongSinh starts with 1
+            return (GiaiDoanTruongSinhEnum)(steps + 1); //GiaiDoanTruongSinh starts with 1
         }
 
         /// <summary>
