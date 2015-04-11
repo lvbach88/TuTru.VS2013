@@ -44,37 +44,37 @@ namespace Business
                 case CanEnum.None:
                     break;
                 case CanEnum.Giap:
-                    start = 11; //Hoi
+                    start = TongHopCanChi.MuoiHaiDiaChi.FindIndex(u => u.Ten == ChiEnum.Hoi); //11; //Hoi
                     direction = 1;
                     break;
                 case CanEnum.At:
-                    start = 6; //Ngo
+                    start = TongHopCanChi.MuoiHaiDiaChi.FindIndex(u => u.Ten == ChiEnum.Ngo); //6; //Ngo
                     direction = -1;
                     break;
                 case CanEnum.Binh:
                 case CanEnum.Mau:
-                    start = 2; //Dan
+                    start = TongHopCanChi.MuoiHaiDiaChi.FindIndex(u => u.Ten == ChiEnum.Dan); //2; //Dan
                     direction = 1;
                     break;
                 case CanEnum.Dinh:
                 case CanEnum.Ky:
-                    start = 9; //Dau
+                    start = TongHopCanChi.MuoiHaiDiaChi.FindIndex(u => u.Ten == ChiEnum.Dau); //9; //Dau
                     direction = -1;
                     break;
                 case CanEnum.Canh:
-                    start = 5; //Ty
+                    start = TongHopCanChi.MuoiHaiDiaChi.FindIndex(u => u.Ten == ChiEnum.Ty); //5; //Ty
                     direction = 1;
                     break;
                 case CanEnum.Tan:
-                    start = 0; //Ti
+                    start = TongHopCanChi.MuoiHaiDiaChi.FindIndex(u => u.Ten == ChiEnum.Ti); //0; //Ti
                     direction = -1;
                     break;
                 case CanEnum.Nham:
-                    start = 8; //Than
+                    start = TongHopCanChi.MuoiHaiDiaChi.FindIndex(u => u.Ten == ChiEnum.Than); //8; //Than
                     direction = 1;
                     break;
                 case CanEnum.Quy:
-                    start = 3; //Mao
+                    start = TongHopCanChi.MuoiHaiDiaChi.FindIndex(u => u.Ten == ChiEnum.Mao); //3; //Mao
                     direction = -1;
                     break;
                 default:
@@ -237,12 +237,12 @@ namespace Business
 
                             if (thienCan.Can == CanEnum.Canh || thienCan.Can == CanEnum.Tan)
                             {
-                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Moc);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Tho);
                             }
 
                             if (thienCan.Can == CanEnum.Nham || thienCan.Can == CanEnum.Quy)
                             {
-                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Tho);
+                                napAm.Add(new Tuple<CanEnum, ChiEnum>(thienCan.Can, diaChi.Ten), NguHanhEnum.Moc);
                             }
 
                             break;
