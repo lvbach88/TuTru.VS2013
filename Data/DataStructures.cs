@@ -105,6 +105,7 @@ namespace Data
             this.TrungKhi = trungkhi;
             this.TapKhi = tapkhi;
         }
+
     }
 
     /// <summary>
@@ -197,59 +198,8 @@ namespace Data
 
         public static void Init()
         {
-            MuoiHaiDiaChi = new List<DiaChi>();
+            #region MuoiThienCan
             
-            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Ti,
-                                new ThienCan(CanEnum.Quy), 
-                                null, 
-                                null));
-            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Suu,
-                                new ThienCan(CanEnum.Ky),
-                                new ThienCan(CanEnum.Quy),
-                                new ThienCan(CanEnum.Tan)));
-            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Dan, 
-                                new ThienCan(CanEnum.Giap), 
-                                new ThienCan(CanEnum.Binh), 
-                                new ThienCan(CanEnum.Mau)));
-            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Mao, 
-                                new ThienCan(CanEnum.At), 
-                                null, 
-                                null));
-            
-            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Thin, 
-                                new ThienCan(CanEnum.Mau),
-                                new ThienCan(CanEnum.At), 
-                                new ThienCan(CanEnum.Quy)));
-            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Ty, 
-                                new ThienCan(CanEnum.Binh), 
-                                new ThienCan(CanEnum.Canh), 
-                                new ThienCan(CanEnum.Mau)));
-            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Ngo, 
-                                new ThienCan(CanEnum.Dinh), 
-                                new ThienCan(CanEnum.Ky), 
-                                null));
-            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Mui, 
-                                new ThienCan(CanEnum.Ky), 
-                                new ThienCan(CanEnum.Dinh), 
-                                new ThienCan(CanEnum.At)));
-
-            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Than,
-                                new ThienCan(CanEnum.Canh),
-                                new ThienCan(CanEnum.Nham),
-                                new ThienCan(CanEnum.Mau)));
-            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Dau,
-                                new ThienCan(CanEnum.Tan), 
-                                null, 
-                                null));
-            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Tuat,
-                                new ThienCan(CanEnum.Mau),
-                                new ThienCan(CanEnum.Tan),
-                                new ThienCan(CanEnum.Dinh)));
-            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Hoi,
-                                new ThienCan(CanEnum.Nham),
-                                new ThienCan(CanEnum.Giap), 
-                                null));
-
             MuoiThienCan = new List<ThienCan>();
 
             MuoiThienCan.Add(new ThienCan(CanEnum.Giap));
@@ -266,6 +216,71 @@ namespace Data
 
             MuoiThienCan.Add(new ThienCan(CanEnum.Nham));
             MuoiThienCan.Add(new ThienCan(CanEnum.Quy));
+            #endregion MuoiThienCan
+
+            #region MuoiHaiDiaChi
+            
+            MuoiHaiDiaChi = new List<DiaChi>();
+            
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Ti,
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Quy),//new ThienCan(CanEnum.Quy), 
+                                null, 
+                                null));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Suu,
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Ky), //new ThienCan(CanEnum.Ky),
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Quy), //new ThienCan(CanEnum.Quy),
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Tan) //new ThienCan(CanEnum.Tan)
+                                ));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Dan, 
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Giap),//new ThienCan(CanEnum.Giap), 
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Binh),//new ThienCan(CanEnum.Binh), 
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Mau)//new ThienCan(CanEnum.Mau)
+                                ));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Mao,
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.At), //new ThienCan(CanEnum.At), 
+                                null, 
+                                null));
+            
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Thin,
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Mau), //new ThienCan(CanEnum.Mau),
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.At), //new ThienCan(CanEnum.At), 
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Quy) //new ThienCan(CanEnum.Quy)
+                                ));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Ty,
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Binh), //new ThienCan(CanEnum.Binh), 
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Canh), //new ThienCan(CanEnum.Canh), 
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Mau) //, new ThienCan(CanEnum.Mau)
+                                ));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Ngo,
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Dinh), //new ThienCan(CanEnum.Dinh), 
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Ky), //new ThienCan(CanEnum.Ky), 
+                                null));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Mui,
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Ky), //new ThienCan(CanEnum.Ky), 
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Dinh), //new ThienCan(CanEnum.Dinh), 
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.At) //, new ThienCan(CanEnum.At)
+                                ));
+
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Than,
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Canh), //new ThienCan(CanEnum.Canh),
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Nham), //new ThienCan(CanEnum.Nham),
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Mau) //, new ThienCan(CanEnum.Mau)
+                                ));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Dau,
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Tan), //new ThienCan(CanEnum.Tan), 
+                                null, 
+                                null));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Tuat,
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Mau), //new ThienCan(CanEnum.Mau),
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Tan), //new ThienCan(CanEnum.Tan),
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Dinh) //, new ThienCan(CanEnum.Dinh)
+                                ));
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Hoi,
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Nham), //new ThienCan(CanEnum.Nham),
+                                MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Giap), //new ThienCan(CanEnum.Giap), 
+                                null));
+            #endregion MuoiHaiDiaChi
+
         }
     }
 
