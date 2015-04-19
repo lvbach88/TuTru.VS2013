@@ -32,7 +32,7 @@ namespace Data
         Thin,
         Ty,
         Ngo,
-        Mui, 
+        Mui,
         Than,
         Dau,
         Tuat,
@@ -51,8 +51,9 @@ namespace Data
 
     public enum AmDuongEnum
     {
-        Am = 0,
-        Duong = 1
+        None = 0,
+        Am,
+        Duong
     }
 
     public enum GiaiDoanTruongSinhEnum
@@ -86,6 +87,13 @@ namespace Data
         ThienTai,
         ChinhQuan,
         ThienQuan
+    }
+
+    public enum GioiTinhEnum
+    {
+        None = 0,
+        Nu,
+        Nam
     }
 
     /// <summary>
@@ -199,7 +207,7 @@ namespace Data
         public static void Init()
         {
             #region MuoiThienCan
-            
+
             MuoiThienCan = new List<ThienCan>();
 
             MuoiThienCan.Add(new ThienCan(CanEnum.Giap));
@@ -219,28 +227,28 @@ namespace Data
             #endregion MuoiThienCan
 
             #region MuoiHaiDiaChi
-            
+
             MuoiHaiDiaChi = new List<DiaChi>();
-            
+
             MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Ti,
                                 MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Quy),//new ThienCan(CanEnum.Quy), 
-                                null, 
+                                null,
                                 null));
             MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Suu,
                                 MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Ky), //new ThienCan(CanEnum.Ky),
                                 MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Quy), //new ThienCan(CanEnum.Quy),
                                 MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Tan) //new ThienCan(CanEnum.Tan)
                                 ));
-            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Dan, 
+            MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Dan,
                                 MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Giap),//new ThienCan(CanEnum.Giap), 
                                 MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Binh),//new ThienCan(CanEnum.Binh), 
                                 MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Mau)//new ThienCan(CanEnum.Mau)
                                 ));
             MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Mao,
                                 MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.At), //new ThienCan(CanEnum.At), 
-                                null, 
+                                null,
                                 null));
-            
+
             MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Thin,
                                 MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Mau), //new ThienCan(CanEnum.Mau),
                                 MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.At), //new ThienCan(CanEnum.At), 
@@ -268,7 +276,7 @@ namespace Data
                                 ));
             MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Dau,
                                 MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Tan), //new ThienCan(CanEnum.Tan), 
-                                null, 
+                                null,
                                 null));
             MuoiHaiDiaChi.Add(new DiaChi(ChiEnum.Tuat,
                                 MuoiThienCan.Single<ThienCan>(u => u.Can == CanEnum.Mau), //new ThienCan(CanEnum.Mau),
@@ -294,7 +302,7 @@ namespace Data
 
         public List<string> CanSao;
         public List<string> ChiSao;
-        
+
 
         public Tru(ThienCan can, DiaChi chi)
         {
@@ -304,6 +312,22 @@ namespace Data
             this.CanSao = new List<string>();
             this.ChiSao = new List<string>();
 
+        }
+    }
+
+    public class LaSo
+    {
+        public GioiTinhEnum GioiTinh { get; set; }
+        public Dictionary<string, Tru> TuTru { get; set; }
+        public List<Tru> DaiVan { get; set; }
+        public List<Tru> TieuVan { get; set; }
+
+        public LaSo()
+        {
+            GioiTinh = GioiTinhEnum.None;
+            TuTru = new Dictionary<string, Tru>();
+            DaiVan = new List<Tru>();
+            TieuVan = new List<Tru>();
         }
     }
 
