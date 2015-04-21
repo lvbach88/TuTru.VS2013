@@ -20,25 +20,57 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void Check_CreateLaSo_NotNull()
+        public void Check_CreateTuTru_NotNull()
         {
             string canNam = "Ky", chiNam = "Ty", canThang = "Dinh", chiThang = "Suu",
-                canNgay = "Nham", chiNgay = "Than", canGio = "At", chiGio = "Ty";
+                canNgay = "Nham", chiNgay = "Than", canGio = "At", chiGio = "Ty",
+                gt = "Nam";
             Business.Business mybiz = new Business.Business();
-            mybiz.CreateLaSo(canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
+            mybiz.CreateTuTru(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
 
             Assert.IsNotNull(mybiz.LaSoCuaToi);
         }
 
         [TestMethod]
-        public void Check_CreateLaSo_Null()
+        public void Check_CreateTuTru_Null()
         {
             string canNam = "", chiNam = "Ty", canThang = "Dinh", chiThang = "Suu",
-                canNgay = "Nham", chiNgay = "Than", canGio = "At", chiGio = "Ty";
+                canNgay = "Nham", chiNgay = "Than", canGio = "At", chiGio = "Ty",
+                gt = "Nu";
             Business.Business mybiz = new Business.Business();
-            mybiz.CreateLaSo(canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
+            mybiz.CreateTuTru(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
 
             Assert.IsNull(mybiz.LaSoCuaToi);
+        }
+
+        [TestMethod]
+        public void Check_CreateDaiVan_AmNu()
+        {
+            string canNam = "Ky", chiNam = "Ty", canThang = "Dinh", chiThang = "Suu",
+                canNgay = "Nham", chiNgay = "Than", canGio = "At", chiGio = "Ty",
+                gt = "Nu";
+            Business.Business mybiz = new Business.Business();
+            mybiz.CreateTuTru(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
+            mybiz.CreateDaiVan();
+            var can = mybiz.LaSoCuaToi.DaiVan[4].ThienCan.Can;
+            var chi = mybiz.LaSoCuaToi.DaiVan[4].DiaChi.Ten;
+            Assert.AreEqual<CanEnum>(CanEnum.Nham, can);
+            Assert.AreEqual<ChiEnum>(ChiEnum.Ngo, chi);
+        }
+
+        [TestMethod]
+        public void Check_CreateDaiVan_AmNam()
+        {
+            string canNam = "Dinh", chiNam = "Mao", canThang = "Quy", chiThang = "Suu",
+                canNgay = "Tan", chiNgay = "Mui", canGio = "Ky", chiGio = "Hoi",
+                gt = "Nam";
+            Business.Business mybiz = new Business.Business();
+            mybiz.CreateTuTru(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
+            mybiz.CreateDaiVan();
+            var can = mybiz.LaSoCuaToi.DaiVan[4].ThienCan.Can;
+            var chi = mybiz.LaSoCuaToi.DaiVan[4].DiaChi.Ten;
+            Assert.AreEqual<CanEnum>(CanEnum.Mau, can);
+            Assert.AreEqual<ChiEnum>(ChiEnum.Than, chi);
         }
     }
 }

@@ -12,5 +12,8 @@ namespace Data
         public static string TRU_GIO = "GIO";
         public static string TRU_THANG = "THANG";
         public static string TRU_NAM = "NAM";
+
+        public static int SO_DAI_VAN = 9;
+        public static int NAM_DAI_VAN = 10;
     }
 }

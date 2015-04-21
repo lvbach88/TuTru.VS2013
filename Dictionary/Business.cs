@@ -12,13 +12,19 @@ namespace Business
 
         public LaSo LaSoCuaToi { get; set; }
 
-        public void CreateLaSo(string canNam, string chiNam,
+        
+        public void CreateTuTru( string gioiTinh,
+                                string canNam, string chiNam,
                                 string canThang, string chiThang,
                                 string canNgay, string chiNgay,
                                 string canGio, string chiGio)
         {
             CanEnum e_canNam, e_canThang, e_canNgay, e_canGio;
             ChiEnum e_chiNam, e_chiThang, e_chiNgay, e_chiGio;
+            GioiTinhEnum e_gt;
+
+            bool cvtGt = Enum.TryParse<GioiTinhEnum>(gioiTinh, true, out e_gt);
+            cvtGt &= Enum.IsDefined(typeof(GioiTinhEnum), e_gt);
 
             bool cvtCanNam = Enum.TryParse<CanEnum>(canNam, true, out e_canNam);
             cvtCanNam &= Enum.IsDefined(typeof(CanEnum), e_canNam);
@@ -46,7 +52,8 @@ namespace Business
             cvtChiGio &= Enum.IsDefined(typeof(ChiEnum), e_chiGio);
 
             if (!(cvtCanNam && cvtCanThang && cvtCanNgay && cvtCanGio
-                && cvtChiNam && cvtChiThang && cvtChiNgay && cvtChiGio))
+                && cvtChiNam && cvtChiThang && cvtChiNgay && cvtChiGio
+                && cvtGt))
             {
                 this.LaSoCuaToi = null;
             }
@@ -67,9 +74,49 @@ namespace Business
                 this.LaSoCuaToi.TuTru.Add(Constants.TRU_NGAY, truNgay);
                 this.LaSoCuaToi.TuTru.Add(Constants.TRU_GIO, truGio);
 
+                this.LaSoCuaToi.GioiTinh = e_gt;
+
             }
 
             
+        }
+
+        public void CreateDaiVan()
+        {
+            if (this.LaSoCuaToi == null)
+            {
+                return;
+            }
+
+            int direction = 1;
+
+            if ((this.LaSoCuaToi.GioiTinh == GioiTinhEnum.Nam && this.LaSoCuaToi.TuTru[Constants.TRU_NAM].ThienCan.AmDuong == AmDuongEnum.Duong)
+                || (this.LaSoCuaToi.GioiTinh == GioiTinhEnum.Nu && this.LaSoCuaToi.TuTru[Constants.TRU_NAM].ThienCan.AmDuong == AmDuongEnum.Am))
+            {
+                direction = 1;
+            }
+            else if ((this.LaSoCuaToi.GioiTinh == GioiTinhEnum.Nam && this.LaSoCuaToi.TuTru[Constants.TRU_NAM].ThienCan.AmDuong == AmDuongEnum.Am)
+                || (this.LaSoCuaToi.GioiTinh == GioiTinhEnum.Nu && this.LaSoCuaToi.TuTru[Constants.TRU_NAM].ThienCan.AmDuong == AmDuongEnum.Duong))
+            {
+                direction = -1;
+            }
+
+            var canThang = this.LaSoCuaToi.TuTru[Constants.TRU_THANG].ThienCan.Can;
+            var chiThang = this.LaSoCuaToi.TuTru[Constants.TRU_THANG].DiaChi.Ten;
+
+            int canIndex = TongHopCanChi.MuoiThienCan.FindIndex(u => u.Can == canThang);
+            int chiIndex = TongHopCanChi.MuoiHaiDiaChi.FindIndex(u => u.Ten == chiThang);
+
+            int nCan = TongHopCanChi.MuoiThienCan.Count;
+            int nChi = TongHopCanChi.MuoiHaiDiaChi.Count;
+
+            for (int i = 0; i < Constants.SO_DAI_VAN; i++)
+            {
+                canIndex = (canIndex + nCan + direction) % nCan;
+                chiIndex = (chiIndex + nChi + direction) % nChi;
+                this.LaSoCuaToi.DaiVan.Add(new Tru(TongHopCanChi.MuoiThienCan[canIndex], TongHopCanChi.MuoiHaiDiaChi[chiIndex]));
+            }
+
         }
     }
 }
