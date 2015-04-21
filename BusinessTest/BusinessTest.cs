@@ -49,13 +49,16 @@ namespace BusinessTest
             string canNam = "Ky", chiNam = "Ty", canThang = "Dinh", chiThang = "Suu",
                 canNgay = "Nham", chiNgay = "Than", canGio = "At", chiGio = "Ty",
                 gt = "Nu";
+            int tuoi = 9;
             Business.Business mybiz = new Business.Business();
             mybiz.CreateTuTru(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
-            mybiz.CreateDaiVan();
+            mybiz.CreateDaiVan(tuoi);
             var can = mybiz.LaSoCuaToi.DaiVan[4].ThienCan.Can;
             var chi = mybiz.LaSoCuaToi.DaiVan[4].DiaChi.Ten;
+            var t = mybiz.LaSoCuaToi.Tuoi[4];
             Assert.AreEqual<CanEnum>(CanEnum.Nham, can);
             Assert.AreEqual<ChiEnum>(ChiEnum.Ngo, chi);
+            Assert.AreEqual(49, t);
         }
 
         [TestMethod]
@@ -64,13 +67,16 @@ namespace BusinessTest
             string canNam = "Dinh", chiNam = "Mao", canThang = "Quy", chiThang = "Suu",
                 canNgay = "Tan", chiNgay = "Mui", canGio = "Ky", chiGio = "Hoi",
                 gt = "Nam";
+            int tuoi = 4;
             Business.Business mybiz = new Business.Business();
             mybiz.CreateTuTru(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
-            mybiz.CreateDaiVan();
+            mybiz.CreateDaiVan(tuoi);
             var can = mybiz.LaSoCuaToi.DaiVan[4].ThienCan.Can;
             var chi = mybiz.LaSoCuaToi.DaiVan[4].DiaChi.Ten;
+            var t = mybiz.LaSoCuaToi.Tuoi[4];
             Assert.AreEqual<CanEnum>(CanEnum.Mau, can);
             Assert.AreEqual<ChiEnum>(ChiEnum.Than, chi);
+            Assert.AreEqual(44, t);
         }
     }
 }

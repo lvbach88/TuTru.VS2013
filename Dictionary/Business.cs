@@ -81,7 +81,7 @@ namespace Business
             
         }
 
-        public void CreateDaiVan()
+        public void CreateDaiVan(int age = Int16.MinValue)
         {
             if (this.LaSoCuaToi == null)
             {
@@ -115,6 +115,16 @@ namespace Business
                 canIndex = (canIndex + nCan + direction) % nCan;
                 chiIndex = (chiIndex + nChi + direction) % nChi;
                 this.LaSoCuaToi.DaiVan.Add(new Tru(TongHopCanChi.MuoiThienCan[canIndex], TongHopCanChi.MuoiHaiDiaChi[chiIndex]));
+            }
+
+            //populate ages
+            if (age != Int16.MinValue)
+            {
+                for (int i = 0; i < Constants.SO_DAI_VAN; i++)
+                {
+                    this.LaSoCuaToi.Tuoi.Add(age);
+                    age += Constants.NAM_DAI_VAN;
+                }
             }
 
         }

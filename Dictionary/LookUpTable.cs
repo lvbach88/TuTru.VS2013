@@ -202,6 +202,46 @@ namespace Business
         }
 
         /// <summary>
+        /// Return Tru of a year
+        /// </summary>
+        /// <param name="year">if not passed, current year is used.</param>
+        /// <returns></returns>
+        public static Tru TruOfTheYear(int year = Int16.MinValue)
+        {
+            if (year == Int16.MinValue)
+            {
+                year = DateTime.Today.Year;
+            }
+
+            int direction = 0;
+
+            if (year >= Constants.SEEDING_YEAR)
+            {
+                direction = 1;
+            }
+            else
+            {
+                direction = -1;
+            }
+
+            int diff = Math.Abs(year - Constants.SEEDING_YEAR);
+
+            int canIndex = TongHopCanChi.MuoiThienCan.FindIndex(u => u.Can == Constants.SEEDING_CAN);
+            int chiIndex = TongHopCanChi.MuoiHaiDiaChi.FindIndex(u => u.Ten == Constants.SEEDING_CHI);
+
+            int nCan = TongHopCanChi.MuoiThienCan.Count;
+            int nChi = TongHopCanChi.MuoiHaiDiaChi.Count;
+
+            for (int i = 0; i < diff; i++)
+            {
+                canIndex = (canIndex + nCan + direction) % nCan;
+                chiIndex = (chiIndex + nChi + direction) % nChi;
+            }
+
+            return new Tru(TongHopCanChi.MuoiThienCan[canIndex], TongHopCanChi.MuoiHaiDiaChi[chiIndex]);
+        }
+
+        /// <summary>
         /// Create NapAm dictionary
         /// </summary>
         private static void napAm_Init()

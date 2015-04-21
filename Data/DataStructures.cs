@@ -321,6 +321,7 @@ namespace Data
         public Dictionary<string, Tru> TuTru { get; set; }
         public List<Tru> DaiVan { get; set; }
         public List<Tru> TieuVan { get; set; }
+        public List<int> Tuoi { get; set; }
 
         public LaSo()
         {
@@ -328,6 +329,7 @@ namespace Data
             TuTru = new Dictionary<string, Tru>();
             DaiVan = new List<Tru>();
             TieuVan = new List<Tru>();
+            Tuoi = new List<int>();
         }
     }
 

@@ -15,5 +15,9 @@ namespace Data
 
         public static int SO_DAI_VAN = 9;
         public static int NAM_DAI_VAN = 10;
+
+        public static int SEEDING_YEAR = 2015;
+        public static CanEnum SEEDING_CAN = CanEnum.At;
+        public static ChiEnum SEEDING_CHI = ChiEnum.Mui;
     }
 }

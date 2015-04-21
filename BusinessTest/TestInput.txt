@@ -1,4 +1,6 @@
-﻿NAM,Ky,Ty
+﻿GIOITINH,NU
+TUOI,9
+NAM,Ky,Ty
 THANG,Dinh,Suu
 NGAY,Nham,Than
 GIO,At,Ty
