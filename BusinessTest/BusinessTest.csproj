@@ -65,7 +65,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestInput.txt" />
+    <Content Include="TestData\TestInput.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\Dao Duy Tuan Duong.bazi.pdf" />
+    <None Include="TestData\LeVietBach.bazi.pdf" />
+    <None Include="TestData\MaiDiepHang.bazi.pdf" />
+    <None Include="TestData\NguyenHuyenAnh.bazi.pdf" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
