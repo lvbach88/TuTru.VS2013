@@ -92,8 +92,8 @@ namespace BusinessTest
             mybiz.CreateTuTru(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
             mybiz.CreateDaiVan(tuoi);
             mybiz.CreateCungMenh();
-            Assert.AreEqual<CanEnum>(CanEnum.At, mybiz.LaSoCuaToi.CungMenh.ThienCan.Can);
-            Assert.AreEqual<ChiEnum>(ChiEnum.Ty, mybiz.LaSoCuaToi.CungMenh.DiaChi.Ten);
+            Assert.AreEqual<CanEnum>(CanEnum.At, mybiz.LaSoCuaToi.TuTru[Constants.CUNG_MENH].ThienCan.Can);
+            Assert.AreEqual<ChiEnum>(ChiEnum.Ty, mybiz.LaSoCuaToi.TuTru[Constants.CUNG_MENH].DiaChi.Ten);
 
         }
 
@@ -110,8 +110,50 @@ namespace BusinessTest
             mybiz.CreateTuTru(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
             mybiz.CreateDaiVan(tuoi);
             mybiz.CreateThaiNguyen();
-            Assert.AreEqual<CanEnum>(CanEnum.Giap, mybiz.LaSoCuaToi.ThaiNguyen.ThienCan.Can);
-            Assert.AreEqual<ChiEnum>(ChiEnum.Thin, mybiz.LaSoCuaToi.ThaiNguyen.DiaChi.Ten);
+            Assert.AreEqual<CanEnum>(CanEnum.Giap, mybiz.LaSoCuaToi.TuTru[Constants.THAI_NGUYEN].ThienCan.Can);
+            Assert.AreEqual<ChiEnum>(ChiEnum.Thin, mybiz.LaSoCuaToi.TuTru[Constants.THAI_NGUYEN].DiaChi.Ten);
+        }
+
+        [TestMethod]
+        public void Check_InitLaSo_AmNam()
+        {
+            string canNam = "Dinh", chiNam = "Mao",
+                    canThang = "Quy", chiThang = "Suu",
+                    canNgay = "Tan", chiNgay = "Mui",
+                    canGio = "Ky", chiGio = "Hoi",
+                gt = "Nam";
+            int tuoi = 4;
+            Business.Business mybiz = new Business.Business();
+            mybiz.InitLaSo(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio, tuoi);
+
+            var truNam = mybiz.LaSoCuaToi.TuTru[Constants.TRU_NAM];
+            var truThang = mybiz.LaSoCuaToi.TuTru[Constants.TRU_THANG];
+            var truNgay = mybiz.LaSoCuaToi.TuTru[Constants.TRU_NGAY];
+            var truGio = mybiz.LaSoCuaToi.TuTru[Constants.TRU_GIO];
+            var cungMenh = mybiz.LaSoCuaToi.TuTru[Constants.CUNG_MENH];
+            var thaiNguyen = mybiz.LaSoCuaToi.TuTru[Constants.THAI_NGUYEN];
+            var tru44 = mybiz.LaSoCuaToi.DaiVan[4];
+
+            // check Thap Than
+            Assert.AreEqual<ThapThanEnum>(ThapThanEnum.ThienQuan, truNam.ThienCan.ThapThan);
+            Assert.AreEqual<ThapThanEnum>(ThapThanEnum.ThucThan, truThang.ThienCan.ThapThan);
+            Assert.AreEqual<ThapThanEnum>(ThapThanEnum.ThienAn, truGio.ThienCan.ThapThan);
+            Assert.AreEqual<ThapThanEnum>(ThapThanEnum.ThienTai, truNgay.DiaChi.TapKhi.ThapThan);
+
+            Assert.AreEqual<ThapThanEnum>(ThapThanEnum.ChinhTai, thaiNguyen.ThienCan.ThapThan);
+            Assert.AreEqual<ThapThanEnum>(ThapThanEnum.ChinhQuan, cungMenh.DiaChi.BanKhi.ThapThan);
+
+            // check Nap Am
+            Assert.AreEqual<NguHanhEnum>(NguHanhEnum.Hoa, (NguHanhEnum)cungMenh.ThuocTinh[Constants.NAP_AM]);
+            Assert.AreEqual<NguHanhEnum>(NguHanhEnum.Moc, (NguHanhEnum)truGio.ThuocTinh[Constants.NAP_AM]);
+
+            // check Vong Truong Sinh
+            Assert.AreEqual<GiaiDoanTruongSinhEnum>(GiaiDoanTruongSinhEnum.DeVuong, (GiaiDoanTruongSinhEnum)tru44.ThuocTinh[Constants.VONG_TRUONG_SINH]);
+
+            Assert.AreEqual<GiaiDoanTruongSinhEnum>(GiaiDoanTruongSinhEnum.Mo, (GiaiDoanTruongSinhEnum)thaiNguyen.ThuocTinh[Constants.VONG_TRUONG_SINH]);
+
+            // check Cung Menh Sao
+            Assert.AreEqual<string>(Constants.CungMenhSao.THIEN_VAN, (string)cungMenh.ThuocTinh[Constants.CungMenhSao.CUNG_MENH_SAO]);
         }
     }
 }

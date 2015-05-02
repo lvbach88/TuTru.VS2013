@@ -12,17 +12,59 @@ namespace Business
 
         public LaSo LaSoCuaToi { get; set; }
 
-        public void InitLaSo()
+        public void InitLaSo( string gioiTinh,
+                                string canNam, string chiNam,
+                                string canThang, string chiThang,
+                                string canNgay, string chiNgay,
+                                string canGio, string chiGio,
+                                int tuoi)
         {
             // to call all create/set methods.
+            // 1. create tu tru
+            // 2. create dai van
+            // 3. create tieu van
+            // 4. create cung menh
+            // 5. create thai nguyen
+            CreateTuTru(gioiTinh, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
+            CreateDaiVan(tuoi);
+            CreateTieuVan();
+            CreateCungMenh();
+            CreateThaiNguyen();
 
+            var truNgay = this.LaSoCuaToi.TuTru[Constants.TRU_NGAY];
 
-            //set thap than
+            #region Set Thap Than
             int n = TongHopCanChi.MuoiThienCan.Count;
             for (int i = 0; i < n; i++)
             {
                 SetThapThan(can: TongHopCanChi.MuoiThienCan[i]);
             }
+            #endregion Set Thap Than
+
+            #region Set Nap Am, Vong Truong Sinh
+            foreach (var tru in this.LaSoCuaToi.TuTru.Values)
+            {
+                SetNapAm(tru);
+                tru.ThuocTinh.Add(Constants.VONG_TRUONG_SINH, LookUpTable.VongTruongSinh(truNgay.ThienCan.Can, tru.DiaChi.Ten));
+            }
+
+            foreach (var tru in this.LaSoCuaToi.DaiVan)
+            {
+                SetNapAm(tru);
+                tru.ThuocTinh.Add(Constants.VONG_TRUONG_SINH, LookUpTable.VongTruongSinh(truNgay.ThienCan.Can, tru.DiaChi.Ten));
+            }
+
+            // Tieu Van starts at 1
+            for (int i = 1; i < this.LaSoCuaToi.TieuVan.Count; i++)
+            {
+                var tru = this.LaSoCuaToi.TieuVan[i];
+                SetNapAm(tru);
+                tru.ThuocTinh.Add(Constants.VONG_TRUONG_SINH, LookUpTable.VongTruongSinh(truNgay.ThienCan.Can, tru.DiaChi.Ten));
+            }
+
+            #endregion Set Nap Am, Vong Truong Sinh
+
+
         }
         
         public void CreateTuTru( string gioiTinh,
@@ -201,7 +243,53 @@ namespace Business
             int cungMenhIndex = (soCungMenh - Constants.CUNG_MENH_SHIFT + n) % n;
             var cungMenhChi = TongHopCanChi.MuoiHaiDiaChi[cungMenhIndex];
 
-            this.LaSoCuaToi.CungMenh = LookUpTable.NguHoDon(this.LaSoCuaToi.TuTru[Constants.TRU_NAM].ThienCan.Can, cungMenhChi.Ten);
+            var cungMenh = LookUpTable.NguHoDon(this.LaSoCuaToi.TuTru[Constants.TRU_NAM].ThienCan.Can, cungMenhChi.Ten);
+
+            switch (cungMenh.DiaChi.Ten)
+            {
+                case ChiEnum.None:
+                    break;
+                case ChiEnum.Ti:
+                    cungMenh.ThuocTinh.Add(Constants.CungMenhSao.CUNG_MENH_SAO, Constants.CungMenhSao.THIEN_QUY);
+                    break;
+                case ChiEnum.Suu:
+                    cungMenh.ThuocTinh.Add(Constants.CungMenhSao.CUNG_MENH_SAO, Constants.CungMenhSao.THIEN_ACH);
+                    break;
+                case ChiEnum.Dan:
+                    cungMenh.ThuocTinh.Add(Constants.CungMenhSao.CUNG_MENH_SAO, Constants.CungMenhSao.THIEN_QUYEN);
+                    break;
+                case ChiEnum.Mao:
+                    cungMenh.ThuocTinh.Add(Constants.CungMenhSao.CUNG_MENH_SAO, Constants.CungMenhSao.THIEN_XICH);
+                    break;
+                case ChiEnum.Thin:
+                    cungMenh.ThuocTinh.Add(Constants.CungMenhSao.CUNG_MENH_SAO, Constants.CungMenhSao.THIEN_NHU);
+                    break;
+                case ChiEnum.Ty:
+                    cungMenh.ThuocTinh.Add(Constants.CungMenhSao.CUNG_MENH_SAO, Constants.CungMenhSao.THIEN_VAN);
+                    break;
+                case ChiEnum.Ngo:
+                    cungMenh.ThuocTinh.Add(Constants.CungMenhSao.CUNG_MENH_SAO, Constants.CungMenhSao.THIEN_PHUC);
+                    break;
+                case ChiEnum.Mui:
+                    cungMenh.ThuocTinh.Add(Constants.CungMenhSao.CUNG_MENH_SAO, Constants.CungMenhSao.THIEN_LAO);
+                    break;
+                case ChiEnum.Than:
+                    cungMenh.ThuocTinh.Add(Constants.CungMenhSao.CUNG_MENH_SAO, Constants.CungMenhSao.THIEN_QUA);
+                    break;
+                case ChiEnum.Dau:
+                    cungMenh.ThuocTinh.Add(Constants.CungMenhSao.CUNG_MENH_SAO, Constants.CungMenhSao.THIEN_BI);
+                    break;
+                case ChiEnum.Tuat:
+                    cungMenh.ThuocTinh.Add(Constants.CungMenhSao.CUNG_MENH_SAO, Constants.CungMenhSao.THIEN_NGHE);
+                    break;
+                case ChiEnum.Hoi:
+                    cungMenh.ThuocTinh.Add(Constants.CungMenhSao.CUNG_MENH_SAO, Constants.CungMenhSao.THIEN_THO);
+                    break;
+                default:
+                    break;
+            }
+
+            this.LaSoCuaToi.TuTru.Add(Constants.CUNG_MENH, cungMenh);
         }
 
         public void CreateThaiNguyen()
@@ -215,7 +303,8 @@ namespace Business
             int thaiNguyenCanIndex = (canThangIndex + Constants.THAI_NGUYEN_CAN_SHIFT + nCan) % nCan;
             int thaiNguyenChiIndex = (chiThangIndex + Constants.THAI_NGUYEN_CHI_SHIFT + nChi) % nChi;
 
-            this.LaSoCuaToi.ThaiNguyen = new Tru(TongHopCanChi.MuoiThienCan[thaiNguyenCanIndex], TongHopCanChi.MuoiHaiDiaChi[thaiNguyenChiIndex]);
+            var thaiNguyen = new Tru(TongHopCanChi.MuoiThienCan[thaiNguyenCanIndex], TongHopCanChi.MuoiHaiDiaChi[thaiNguyenChiIndex]);
+            this.LaSoCuaToi.TuTru.Add(Constants.THAI_NGUYEN, thaiNguyen);
         }
 
         /// <summary>
@@ -293,7 +382,12 @@ namespace Business
             }
         }
 
-        
+        public void SetNapAm(Tru tru)
+        {
+            NguHanhEnum nguHanh;
+            LookUpTable.NapAm.TryGetValue(new Tuple<CanEnum, ChiEnum>(tru.ThienCan.Can, tru.DiaChi.Ten), out nguHanh);
+            tru.ThuocTinh.Add(Constants.NAP_AM, nguHanh);
+        }
 
 
     }

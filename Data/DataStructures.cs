@@ -300,8 +300,7 @@ namespace Data
         public ThienCan ThienCan { get; private set; }
         public DiaChi DiaChi { get; private set; }
 
-        public List<string> CanSao;
-        public List<string> ChiSao;
+        public Dictionary<string,object> ThuocTinh { get; set; }
 
 
         public Tru(ThienCan can, DiaChi chi)
@@ -309,9 +308,7 @@ namespace Data
             this.ThienCan = can;
             this.DiaChi = chi;
 
-            this.CanSao = new List<string>();
-            this.ChiSao = new List<string>();
-
+            this.ThuocTinh = new Dictionary<string, object>();
         }
     }
 
@@ -322,8 +319,8 @@ namespace Data
         public List<Tru> DaiVan { get; set; }
         public List<Tru> TieuVan { get; set; }
         public List<int> TuoiDaiVan { get; set; }
-        public Tru CungMenh { get; set; }
-        public Tru ThaiNguyen { get; set; }
+        //public Tru CungMenh { get; set; }
+        //public Tru ThaiNguyen { get; set; }
 
         public LaSo()
         {
