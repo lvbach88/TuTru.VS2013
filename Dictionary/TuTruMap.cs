@@ -7,7 +7,7 @@ using Data;
 
 namespace Business
 {
-    public class Business
+    public class TuTruMap
     {
 
         public LaSo LaSoCuaToi { get; set; }

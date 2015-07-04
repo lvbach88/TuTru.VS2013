@@ -25,7 +25,7 @@ namespace BusinessTest
             string canNam = "Ky", chiNam = "Ty", canThang = "Dinh", chiThang = "Suu",
                 canNgay = "Nham", chiNgay = "Than", canGio = "At", chiGio = "Ty",
                 gt = "Nam";
-            Business.Business mybiz = new Business.Business();
+            Business.TuTruMap mybiz = new Business.TuTruMap();
             mybiz.CreateTuTru(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
 
             Assert.IsNotNull(mybiz.LaSoCuaToi);
@@ -37,7 +37,7 @@ namespace BusinessTest
             string canNam = "", chiNam = "Ty", canThang = "Dinh", chiThang = "Suu",
                 canNgay = "Nham", chiNgay = "Than", canGio = "At", chiGio = "Ty",
                 gt = "Nu";
-            Business.Business mybiz = new Business.Business();
+            Business.TuTruMap mybiz = new Business.TuTruMap();
             mybiz.CreateTuTru(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
 
             Assert.IsNull(mybiz.LaSoCuaToi);
@@ -50,7 +50,7 @@ namespace BusinessTest
                 canNgay = "Nham", chiNgay = "Than", canGio = "At", chiGio = "Ty",
                 gt = "Nu";
             int tuoi = 9;
-            Business.Business mybiz = new Business.Business();
+            Business.TuTruMap mybiz = new Business.TuTruMap();
             mybiz.CreateTuTru(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
             mybiz.CreateDaiVan(tuoi);
             var can = mybiz.LaSoCuaToi.DaiVan[4].ThienCan.Can;
@@ -68,7 +68,7 @@ namespace BusinessTest
                 canNgay = "Tan", chiNgay = "Mui", canGio = "Ky", chiGio = "Hoi",
                 gt = "Nam";
             int tuoi = 4;
-            Business.Business mybiz = new Business.Business();
+            Business.TuTruMap mybiz = new Business.TuTruMap();
             mybiz.CreateTuTru(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
             mybiz.CreateDaiVan(tuoi);
             var can = mybiz.LaSoCuaToi.DaiVan[4].ThienCan.Can;
@@ -88,7 +88,7 @@ namespace BusinessTest
                     canGio = "Ky", chiGio = "Hoi",
                 gt = "Nam";
             int tuoi = 4;
-            Business.Business mybiz = new Business.Business();
+            Business.TuTruMap mybiz = new Business.TuTruMap();
             mybiz.CreateTuTru(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
             mybiz.CreateDaiVan(tuoi);
             mybiz.CreateCungMenh();
@@ -106,7 +106,7 @@ namespace BusinessTest
                     canGio = "Ky", chiGio = "Hoi",
                 gt = "Nam";
             int tuoi = 4;
-            Business.Business mybiz = new Business.Business();
+            Business.TuTruMap mybiz = new Business.TuTruMap();
             mybiz.CreateTuTru(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
             mybiz.CreateDaiVan(tuoi);
             mybiz.CreateThaiNguyen();
@@ -123,7 +123,7 @@ namespace BusinessTest
                     canGio = "Ky", chiGio = "Hoi",
                 gt = "Nam";
             int tuoi = 4;
-            Business.Business mybiz = new Business.Business();
+            Business.TuTruMap mybiz = new Business.TuTruMap();
             mybiz.InitLaSo(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio, tuoi);
 
             var truNam = mybiz.LaSoCuaToi.TuTru[Constants.TRU_NAM];
