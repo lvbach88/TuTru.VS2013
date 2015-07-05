@@ -11,13 +11,14 @@ namespace Business
     {
 
         public LaSo LaSoCuaToi { get; set; }
+        public Tru DaiVanHienTai { get; private set; }
 
         public void InitLaSo( string gioiTinh,
                                 string canNam, string chiNam,
                                 string canThang, string chiThang,
                                 string canNgay, string chiNgay,
                                 string canGio, string chiGio,
-                                int tuoi)
+                                int tuoi, int tuoiDV = Int16.MinValue)
         {
             // to call all create/set methods.
             // 1. create tu tru
@@ -26,7 +27,7 @@ namespace Business
             // 4. create cung menh
             // 5. create thai nguyen
             CreateTuTru(gioiTinh, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio);
-            CreateDaiVan(tuoi);
+            CreateDaiVan(tuoi, tuoiDV);
             CreateTieuVan();
             CreateCungMenh();
             CreateThaiNguyen();
@@ -135,7 +136,7 @@ namespace Business
             
         }
 
-        public void CreateDaiVan(int age = Int16.MinValue)
+        public void CreateDaiVan(int age = Int16.MinValue, int daiVanHienTai = Int16.MinValue)
         {
             
             int direction = 1;
@@ -175,6 +176,16 @@ namespace Business
                     this.LaSoCuaToi.TuoiDaiVan.Add(age);
                     age += Constants.NAM_DAI_VAN;
                 }
+            }
+
+            //Tru cua Dai Van hien tai
+            if (daiVanHienTai != Int16.MinValue)
+            {
+                this.DaiVanHienTai = this.LaSoCuaToi.DaiVan[this.LaSoCuaToi.TuoiDaiVan.FindIndex(u => u == daiVanHienTai)];
+            }
+            else
+            {
+                this.DaiVanHienTai = this.LaSoCuaToi.DaiVan[0];
             }
 
         }

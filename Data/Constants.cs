@@ -50,5 +50,22 @@ namespace Data
             public static string THIEN_NGHE = "THIEN_NGHE";
             public static string THIEN_THO = "THIEN_THO";
         }
+
+        public static class ThuocTinh
+        {
+            #region Luc Hop
+            public static string LUC_HOP_SINH = "LUC_HOP_SINH";
+            public static string LUC_HOP_KHAC = "LUC_HOP_KHAC";
+            #endregion Luc Hop
+
+
+        }
+
+        public static class DiaChiLucHop
+        {
+            public static string LUC_HOP_KHAC = @"TRONG HOP CO KHAC: Truoc tot ma sau xau, truoc nong ma sau lanh.
+Co the quan he vo chong hoac ban be, luc dau rat tot nhung sau do ly hon hoac tinh ban tan vo";
+            public static string LUC_HOP_SINH = @"TRONG HOP CO SINH: Quan he vo chong hay cac moi quan he xa hoi thi ngay cang tot dep hon";
+        }
     }
 }

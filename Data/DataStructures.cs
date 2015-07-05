@@ -96,6 +96,13 @@ namespace Data
         Nam
     }
 
+    public enum SinhKhac
+    {
+        None = 0,
+        Sinh,
+        Khac
+    }
+
     /// <summary>
     /// DiaChi with name and hidden Can
     /// </summary>
@@ -105,6 +112,8 @@ namespace Data
         public ThienCan BanKhi { get; private set; }
         public ThienCan TrungKhi { get; private set; }
         public ThienCan TapKhi { get; private set; }
+        public Dictionary<string, object> ThuocTinh { get; set; }
+
 
         public DiaChi(ChiEnum chi, ThienCan bankhi, ThienCan trungkhi, ThienCan tapkhi)
         {
@@ -112,6 +121,8 @@ namespace Data
             this.BanKhi = bankhi;
             this.TrungKhi = trungkhi;
             this.TapKhi = tapkhi;
+
+            this.ThuocTinh = new Dictionary<string, object>();
         }
 
     }
@@ -125,6 +136,8 @@ namespace Data
         public NguHanhEnum NguHanh { get; private set; }
         public AmDuongEnum AmDuong { get; private set; }
         public ThapThanEnum ThapThan { get; set; }
+        public Dictionary<string, object> ThuocTinh { get; set; }
+
 
         private ThienCan(CanEnum can, NguHanhEnum nguHanh, AmDuongEnum amDuong)
         {
@@ -191,6 +204,7 @@ namespace Data
             }
 
             this.ThapThan = ThapThanEnum.None;
+            this.ThuocTinh = new Dictionary<string, object>();
         }
     }
 

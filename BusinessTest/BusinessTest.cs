@@ -155,5 +155,160 @@ namespace BusinessTest
             // check Cung Menh Sao
             Assert.AreEqual<string>(Constants.CungMenhSao.THIEN_VAN, (string)cungMenh.ThuocTinh[Constants.CungMenhSao.CUNG_MENH_SAO]);
         }
+
+        #region Dia Chi Luc Hop
+        [TestMethod]
+        public void Check_LucHopTho1()
+        {
+            string canNam = "Dinh", chiNam = "Mao",
+                    canThang = "Quy", chiThang = "Suu",
+                    canNgay = "Tan", chiNgay = "Mui",
+                    canGio = "Ky", chiGio = "Hoi",
+                gt = "Nam";
+            int tuoi = 4, tuoiDV = 4;
+            Business.TuTruMap mybiz = new Business.TuTruMap();
+            mybiz.InitLaSo(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio, tuoi, tuoiDV);
+
+            DiaChiLucHop dclh = new DiaChiLucHop(mybiz);
+            dclh.SetLaw();
+
+            var ti = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ti);
+            var suu = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Suu);
+
+            Assert.IsTrue(ti.ThuocTinh.Keys.Contains(Constants.ThuocTinh.LUC_HOP_KHAC));
+            Assert.IsTrue(((NguHanhEnum)ti.ThuocTinh[Constants.ThuocTinh.LUC_HOP_KHAC]) == NguHanhEnum.Tho);
+
+            Assert.IsTrue(suu.ThuocTinh.Keys.Contains(Constants.ThuocTinh.LUC_HOP_KHAC));
+            Assert.IsTrue(((NguHanhEnum)suu.ThuocTinh[Constants.ThuocTinh.LUC_HOP_KHAC]) == NguHanhEnum.Tho);
+        }
+
+        [TestMethod]
+        public void Check_LucHopTho2()
+        {
+            string canNam = "Dinh", chiNam = "Mao",
+                    canThang = "Quy", chiThang = "Suu",
+                    canNgay = "Tan", chiNgay = "Mui",
+                    canGio = "Ky", chiGio = "Hoi",
+                gt = "Nam";
+            int tuoi = 4, tuoiDV = 64;
+            Business.TuTruMap mybiz = new Business.TuTruMap();
+            mybiz.InitLaSo(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio, tuoi, tuoiDV);
+
+            DiaChiLucHop dclh = new DiaChiLucHop(mybiz);
+            dclh.SetLaw();
+
+            var ngo = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ngo);
+            var mui = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Mui);
+
+            Assert.IsTrue(ngo.ThuocTinh.Keys.Contains(Constants.ThuocTinh.LUC_HOP_SINH));
+            Assert.IsTrue(((NguHanhEnum)ngo.ThuocTinh[Constants.ThuocTinh.LUC_HOP_SINH]) == NguHanhEnum.Tho);
+
+            Assert.IsTrue(mui.ThuocTinh.Keys.Contains(Constants.ThuocTinh.LUC_HOP_SINH));
+            Assert.IsTrue(((NguHanhEnum)mui.ThuocTinh[Constants.ThuocTinh.LUC_HOP_SINH]) == NguHanhEnum.Tho);
+        }
+
+        [TestMethod]
+        public void Check_LucHopMoc()
+        {
+            string canNam = "Dinh", chiNam = "Mao",
+                    canThang = "Quy", chiThang = "Suu",
+                    canNgay = "Tan", chiNgay = "Mui",
+                    canGio = "Ky", chiGio = "Hoi",
+                gt = "Nam";
+            int tuoi = 4, tuoiDV = 4;
+            Business.TuTruMap mybiz = new Business.TuTruMap();
+            mybiz.InitLaSo(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio, tuoi, tuoiDV);
+
+            DiaChiLucHop dclh = new DiaChiLucHop(mybiz);
+            dclh.TatcaTru.Add(LookUpTable.TruOfTheYear(2010));
+            dclh.SetLaw();
+
+            var dan = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Dan);
+            var hoi = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Hoi);
+
+            Assert.IsTrue(dan.ThuocTinh.Keys.Contains(Constants.ThuocTinh.LUC_HOP_SINH));
+            Assert.IsTrue(((NguHanhEnum)dan.ThuocTinh[Constants.ThuocTinh.LUC_HOP_SINH]) == NguHanhEnum.Moc);
+
+            Assert.IsTrue(hoi.ThuocTinh.Keys.Contains(Constants.ThuocTinh.LUC_HOP_SINH));
+            Assert.IsTrue(((NguHanhEnum)hoi.ThuocTinh[Constants.ThuocTinh.LUC_HOP_SINH]) == NguHanhEnum.Moc);
+        }
+
+        [TestMethod]
+        public void Check_LucHopHoa()
+        {
+            string canNam = "Dinh", chiNam = "Mao",
+                    canThang = "Quy", chiThang = "Suu",
+                    canNgay = "Tan", chiNgay = "Mui",
+                    canGio = "Ky", chiGio = "Hoi",
+                gt = "Nam";
+            int tuoi = 4, tuoiDV = 24;
+            Business.TuTruMap mybiz = new Business.TuTruMap();
+            mybiz.InitLaSo(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio, tuoi, tuoiDV);
+
+            DiaChiLucHop dclh = new DiaChiLucHop(mybiz);
+            dclh.SetLaw();
+
+            var mao = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Mao);
+            var tuat = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Tuat);
+
+            Assert.IsTrue(mao.ThuocTinh.Keys.Contains(Constants.ThuocTinh.LUC_HOP_KHAC));
+            Assert.IsTrue(((NguHanhEnum)mao.ThuocTinh[Constants.ThuocTinh.LUC_HOP_KHAC]) == NguHanhEnum.Hoa);
+
+            Assert.IsTrue(tuat.ThuocTinh.Keys.Contains(Constants.ThuocTinh.LUC_HOP_KHAC));
+            Assert.IsTrue(((NguHanhEnum)tuat.ThuocTinh[Constants.ThuocTinh.LUC_HOP_KHAC]) == NguHanhEnum.Hoa);
+        }
+
+        [TestMethod]
+        public void Check_LucHopKim()
+        {
+            string canNam = "Dinh", chiNam = "Mao",
+                    canThang = "Quy", chiThang = "Suu",
+                    canNgay = "Tan", chiNgay = "Mui",
+                    canGio = "Ky", chiGio = "Hoi",
+                gt = "Nam";
+            int tuoi = 4, tuoiDV = 34;
+            Business.TuTruMap mybiz = new Business.TuTruMap();
+            mybiz.InitLaSo(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio, tuoi, tuoiDV);
+
+            DiaChiLucHop dclh = new DiaChiLucHop(mybiz);
+            dclh.SetLaw();
+
+            var thin = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Thin);
+            var dau = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Dau);
+
+            Assert.IsTrue(thin.ThuocTinh.Keys.Contains(Constants.ThuocTinh.LUC_HOP_SINH));
+            Assert.IsTrue(((NguHanhEnum)thin.ThuocTinh[Constants.ThuocTinh.LUC_HOP_SINH]) == NguHanhEnum.Kim);
+
+            Assert.IsTrue(dau.ThuocTinh.Keys.Contains(Constants.ThuocTinh.LUC_HOP_SINH));
+            Assert.IsTrue(((NguHanhEnum)dau.ThuocTinh[Constants.ThuocTinh.LUC_HOP_SINH]) == NguHanhEnum.Kim);
+        }
+
+        [TestMethod]
+        public void Check_LucHopThuy()
+        {
+            string canNam = "Dinh", chiNam = "Mao",
+                    canThang = "Quy", chiThang = "Suu",
+                    canNgay = "Tan", chiNgay = "Mui",
+                    canGio = "Ky", chiGio = "Hoi",
+                gt = "Nam";
+            int tuoi = 4, tuoiDV = 44;
+            Business.TuTruMap mybiz = new Business.TuTruMap();
+            mybiz.InitLaSo(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio, tuoi, tuoiDV);
+
+            DiaChiLucHop dclh = new DiaChiLucHop(mybiz);
+            dclh.SetLaw();
+
+            var ty = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ty);
+            var than = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Than);
+
+            Assert.IsTrue(ty.ThuocTinh.Keys.Contains(Constants.ThuocTinh.LUC_HOP_KHAC));
+            Assert.IsTrue(((NguHanhEnum)ty.ThuocTinh[Constants.ThuocTinh.LUC_HOP_KHAC]) == NguHanhEnum.Thuy);
+
+            Assert.IsTrue(than.ThuocTinh.Keys.Contains(Constants.ThuocTinh.LUC_HOP_KHAC));
+            Assert.IsTrue(((NguHanhEnum)than.ThuocTinh[Constants.ThuocTinh.LUC_HOP_KHAC]) == NguHanhEnum.Thuy);
+        }
+
+        #endregion Dia Chi Luc Hop
+
     }
 }
