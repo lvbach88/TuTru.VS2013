@@ -58,6 +58,10 @@ namespace Data
             public static string LUC_HOP_KHAC = "LUC_HOP_KHAC";
             #endregion Luc Hop
 
+            #region Tam Hoi
+            public static string TAM_HOI = "TAM_HOI";
+            public static string BAN_TAM_HOI = "BAN_TAM_HOI";
+            #endregion Tam Hoi
 
         }
 
@@ -66,6 +70,12 @@ namespace Data
             public static string LUC_HOP_KHAC = @"TRONG HOP CO KHAC: Truoc tot ma sau xau, truoc nong ma sau lanh.
 Co the quan he vo chong hoac ban be, luc dau rat tot nhung sau do ly hon hoac tinh ban tan vo";
             public static string LUC_HOP_SINH = @"TRONG HOP CO SINH: Quan he vo chong hay cac moi quan he xa hoi thi ngay cang tot dep hon";
+        }
+
+        public static class DiaChiTamHoi
+        {
+            public static string TAM_HOI = @"";
+            public static string BAN_TAM_HOI = @"";
         }
     }
 }
