@@ -63,6 +63,11 @@ namespace Data
             public static string BAN_TAM_HOI = "BAN_TAM_HOI";
             #endregion Tam Hoi
 
+            #region Tam Hop
+            public static string TAM_HOP = "TAM_HOP";
+            public static string BAN_TAM_HOP = "BAN_TAM_HOP";
+            #endregion Tam Hop
+
         }
 
         public static class DiaChiLucHop
@@ -70,12 +75,27 @@ namespace Data
             public static string LUC_HOP_KHAC = @"TRONG HOP CO KHAC: Truoc tot ma sau xau, truoc nong ma sau lanh.
 Co the quan he vo chong hoac ban be, luc dau rat tot nhung sau do ly hon hoac tinh ban tan vo";
             public static string LUC_HOP_SINH = @"TRONG HOP CO SINH: Quan he vo chong hay cac moi quan he xa hoi thi ngay cang tot dep hon";
+
+            public static string GUIDELINES = @"Luc hop, nam hop thi dep, nu hop thi da dam. Phu Nhan Ky Hop.";
         }
 
         public static class DiaChiTamHoi
         {
             public static string TAM_HOI = @"";
             public static string BAN_TAM_HOI = @"";
+        }
+
+        public static class DiaChiTamHop
+        {
+            public static string TAM_HOP = @"";
+            public static string BAN_TAM_HOP = @"";
+
+            public static string GUIDELINES = @"Kien Loc hop thuong nhieu tai san, van may ngoai y muon.
+Neu la hop quy nhan Chinh An, thi duoc thien an vo cung tot.
+Neu la hop Thuc Than, com an ao mac tai loc doi dao.
+Neu la hop Nguyen Than Dai Hao, nguoi khong phep tac, noi thi cao sang ma hanh thi thap kem, gan tieu nhan xa quan tu.
+Neu la hop Ham Tri, thuong la dam loan bat luong, pham tuc.
+Tam hop, nam hop thi dep, nu hop thi da dam. Phu Nhan Ky Hop.";
         }
     }
 }

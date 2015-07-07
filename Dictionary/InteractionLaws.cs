@@ -205,4 +205,104 @@ namespace Business
             }
         }
     }
+
+    public class DiaChiTamHop : InteractionLaws
+    {
+        public DiaChiTamHop(TuTruMap ttm)
+        {
+            base.Init(ttm);
+        }
+
+        public override void SetLaw()
+        {
+            //throw new NotImplementedException();
+            this.CheckTamHop(ChiEnum.Dan, ChiEnum.Ngo, ChiEnum.Tuat);
+            this.CheckTamHop(ChiEnum.Ty, ChiEnum.Dau, ChiEnum.Suu);
+            this.CheckTamHop(ChiEnum.Than, ChiEnum.Ti, ChiEnum.Thin);
+            this.CheckTamHop(ChiEnum.Hoi, ChiEnum.Mao, ChiEnum.Mui);
+        }
+
+        private void CheckTamHop(ChiEnum chi1, ChiEnum chi2, ChiEnum chi3)
+        {
+            int count = 0;
+            DiaChi dc1 = null, dc2 = null, dc3 = null;
+            var chi1Id = TatcaTru.FindIndex(u => u.DiaChi.Ten == chi1);
+            var chi2Id = TatcaTru.FindIndex(u => u.DiaChi.Ten == chi2);
+            var chi3Id = TatcaTru.FindIndex(u => u.DiaChi.Ten == chi3);
+
+            if (chi1Id != -1)
+            {
+                count++;
+                dc1 = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == chi1);
+            }
+
+            if (chi2Id != -1)
+            {
+                count++;
+                dc2 = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == chi2);
+            }
+
+            if (chi3Id != -1)
+            {
+                count++;
+                dc3 = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == chi3);
+            }
+
+            string thuocTinh = string.Empty;
+            if (count == 2)
+            {
+                thuocTinh = Constants.ThuocTinh.BAN_TAM_HOP;
+            }
+
+            if (count == 3)
+            {
+                thuocTinh = Constants.ThuocTinh.TAM_HOP;
+            }
+
+            if (dc1 != null)
+            {
+                this.SetThuocTinh(dc1, thuocTinh);
+            }
+
+            if (dc2 != null)
+            {
+                this.SetThuocTinh(dc2, thuocTinh);
+            }
+
+            if (dc3 != null)
+            {
+                this.SetThuocTinh(dc3, thuocTinh);
+            }
+        }
+
+        private void SetThuocTinh(DiaChi dc, string thuocTinh)
+        {
+            this.CheckTamHop(ChiEnum.Dan, ChiEnum.Ngo, ChiEnum.Tuat);
+            this.CheckTamHop(ChiEnum.Ty, ChiEnum.Dau, ChiEnum.Suu);
+            this.CheckTamHop(ChiEnum.Than, ChiEnum.Ti, ChiEnum.Thin);
+            this.CheckTamHop(ChiEnum.Hoi, ChiEnum.Mao, ChiEnum.Mui);
+
+            var hoa = new List<ChiEnum> { ChiEnum.Dan, ChiEnum.Ngo, ChiEnum.Tuat };
+            var kim = new List<ChiEnum> { ChiEnum.Ty, ChiEnum.Dau, ChiEnum.Suu };
+            var thuy = new List<ChiEnum> { ChiEnum.Than, ChiEnum.Ti, ChiEnum.Thin };
+            var moc = new List<ChiEnum> { ChiEnum.Hoi, ChiEnum.Mao, ChiEnum.Mui };
+
+            if (hoa.Contains(dc.Ten))
+            {
+                dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Hoa);
+            }
+            else if (kim.Contains(dc.Ten))
+            {
+                dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Kim);
+            }
+            else if (thuy.Contains(dc.Ten))
+            {
+                dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Thuy);
+            }
+            else if (moc.Contains(dc.Ten))
+            {
+                dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Moc);
+            }
+        }
+    }
 }
