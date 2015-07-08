@@ -58,6 +58,10 @@ namespace Data
             public static string LUC_HOP_KHAC = "LUC_HOP_KHAC";
             #endregion Luc Hop
 
+            public static string LUC_XUNG = "LUC_XUNG";
+
+            public static string LUC_HAI = "LUC_HAI";
+
             #region Tam Hoi
             public static string TAM_HOI = "TAM_HOI";
             public static string BAN_TAM_HOI = "BAN_TAM_HOI";
@@ -77,6 +81,47 @@ Co the quan he vo chong hoac ban be, luc dau rat tot nhung sau do ly hon hoac ti
             public static string LUC_HOP_SINH = @"TRONG HOP CO SINH: Quan he vo chong hay cac moi quan he xa hoi thi ngay cang tot dep hon";
 
             public static string GUIDELINES = @"Luc hop, nam hop thi dep, nu hop thi da dam. Phu Nhan Ky Hop.";
+        }
+
+        public static class DiaChiLucXung
+        {
+            public static string TI_NGO = @"Mot doi bat an.
+Thuong thay doi cho o nhung cong tac khong thay doi";
+            public static string SUU_MUI = @"Gap nhieu tro ngai.
+Chuc nghiep xung, gia canh yen on khong thay doi nhung cong tac thay doi.";
+            public static string DAN_THAN = @"Da tinh, doi viec khong dau.";
+            public static string MAO_DAU= @"Boi uoc that tin, lo nghi buon rau, tinh cam giay vo.
+Thuong thay doi cho o nhung cong tac khong thay doi";
+            public static string THIN_TUAT = @"Khac nguoi than, hinh thuong con doan tho.
+Chuc nghiep xung, gia canh yen on khong thay doi nhung cong tac thay doi.";
+            public static string TY_HOI = @"Doi viec khong dau, thich giup nguoi khac.";
+
+            public static string GUIDELINES = @"Dia chi luc xung, xung ky than thi tot, xung cat than, hy than la xau.
+Nam xung thang: Song xa que nha.
+Nam xung ngay: Nguoi than bat hoa.
+Nam xung gio: Con khong hop.
+Nam xung ngay, thang, gio: Tinh hung bao va co tat.
+Ngay xung gio: Khac vo ton con.
+Ngay xung thang: Pham cha me, anh em.
+Tu tru gap xung thuong khong son chung voi cha me
+";
+        }
+
+        public static class DiaChiLucHai
+        {
+            public static string TI_MUI = @"Anh em de bat hoa, khong giup do lan nhau, da thit kho khan";
+            public static string SUU_NGO = @"Neu gap Truong Sinh, De Vuong, Lam Quan thi la nguoi tinh hay gian doi, lam viec khong nhan nai, chong chan.
+Neu gap Suy, Benh, Tu, Tuyet thi co the bi thuong den tan tat.";
+            public static string DAN_TY = @"Ve gia bi phe tat, neu trong tu tru nhieu Kim thi benh tat day than.";
+            public static string MAO_THIN = @"Neu gap Truong Sinh, De Vuong, Lam Quan thi la nguoi tinh hay gian doi, lam viec khong nhan nai, chong chan.
+Neu gap Suy, Benh, Tu, Tuyet thi co the bi thuong den tan tat.";
+            public static string THAN_HOI = @"Xung khac ho hang, cam diec hoac co nhieu mun nhot, seo.";
+            public static string DAU_TUAT = @"Xung khac ho hang, cam diec hoac co nhieu mun nhot, seo.
+Ngay Dau gio Tuat, ve gia co the bi cam diec, dau mat co seo";
+
+            public static string GUIDELINES = @"Thang hai cac chi khac: Khac vo con anh em, song co doc, bac menh.
+Xau nhat la ngay gio tuong hai, ve gia tan tat khong noi nuong tua.
+Neu gap Kinh Duong co the chet hoac gap tai hoa vi ten dan hay thu du.";
         }
 
         public static class DiaChiTamHoi

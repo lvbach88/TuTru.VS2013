@@ -12,10 +12,16 @@ namespace Business
         public List<string> GeneralGuidelines { get; private set; }
         public List<Tru> TatcaTru { get; private set; }
 
+        public List<Tru> TuTru { get; private set; }
+
         protected void Init(TuTruMap ttm)
         {
             var laso = ttm.LaSoCuaToi;
             TatcaTru = new List<Tru>();
+            TuTru = new List<Tru>();
+
+            TuTru.AddRange(laso.TuTru.Values.ToList<Tru>());
+
             TatcaTru.AddRange(laso.TuTru.Values.ToList<Tru>());
             TatcaTru.Add(ttm.DaiVanHienTai);
             TatcaTru.Add(LookUpTable.TruOfTheYear());
@@ -105,6 +111,162 @@ namespace Business
                 if (!diaChi2.ThuocTinh.Keys.Contains(thuocTinh))
                 {
                     diaChi2.ThuocTinh.Add(thuocTinh, lucHop);
+                }
+
+            }
+        }
+    }
+
+    public class DiaChiLucXung : InteractionLaws
+    {
+        public DiaChiLucXung(TuTruMap ttm)
+        {
+            base.Init(ttm);
+        }
+
+        public override void SetLaw()
+        {
+            this.CheckLucXung(ChiEnum.Ti, ChiEnum.Ngo);
+            this.CheckLucXung(ChiEnum.Suu, ChiEnum.Mui);
+            this.CheckLucXung(ChiEnum.Dan, ChiEnum.Than);
+
+            this.CheckLucXung(ChiEnum.Mao, ChiEnum.Dau);
+            this.CheckLucXung(ChiEnum.Thin, ChiEnum.Tuat);
+            this.CheckLucXung(ChiEnum.Ty, ChiEnum.Hoi);
+        }
+
+        private void CheckLucXung(ChiEnum chi1, ChiEnum chi2)
+        {
+            var chi1Id = TatcaTru.FindIndex(u => u.DiaChi.Ten == chi1);
+            var chi2Id = TatcaTru.FindIndex(u => u.DiaChi.Ten == chi2);
+
+            if (chi1Id != -1 && chi2Id != -1)
+            {
+                var diaChi1 = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == chi1);
+                var diaChi2 = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == chi2);
+               
+                string thuocTinh = Constants.ThuocTinh.LUC_XUNG;
+         
+                var lucXung = string.Empty;
+                var tiNgo = new List<ChiEnum> { ChiEnum.Ti, ChiEnum.Ngo};
+                var suuMui = new List<ChiEnum> { ChiEnum.Suu, ChiEnum.Mui };
+                var danThan = new List<ChiEnum> { ChiEnum.Dan, ChiEnum.Than };
+
+                var maoDau = new List<ChiEnum> { ChiEnum.Mao, ChiEnum.Dau };
+                var thinTuat = new List<ChiEnum> { ChiEnum.Thin, ChiEnum.Tuat};
+                var tyHoi = new List<ChiEnum> { ChiEnum.Ty, ChiEnum.Hoi };
+
+                if (tiNgo.Contains(chi1))
+                {
+                    lucXung = Constants.DiaChiLucXung.TI_NGO;
+                }
+                else if (suuMui.Contains(chi1))
+                {
+                    lucXung = Constants.DiaChiLucXung.SUU_MUI;
+                }
+                else if (danThan.Contains(chi1))
+                {
+                    lucXung = Constants.DiaChiLucXung.DAN_THAN;
+                }
+                else if (maoDau.Contains(chi1))
+                {
+                    lucXung = Constants.DiaChiLucXung.MAO_DAU;
+                }
+                else if (thinTuat.Contains(chi1))
+                {
+                    lucXung = Constants.DiaChiLucXung.THIN_TUAT;
+                }
+                else if (tyHoi.Contains(chi1))
+                {
+                    lucXung = Constants.DiaChiLucXung.TY_HOI;
+                }
+
+                if (!diaChi1.ThuocTinh.Keys.Contains(thuocTinh))
+                {
+                    diaChi1.ThuocTinh.Add(thuocTinh, lucXung);
+                }
+
+                if (!diaChi2.ThuocTinh.Keys.Contains(thuocTinh))
+                {
+                    diaChi2.ThuocTinh.Add(thuocTinh, lucXung);
+                }
+
+            }
+        }
+    }
+
+    public class DiaChiLucHai : InteractionLaws
+    {
+        public DiaChiLucHai(TuTruMap ttm)
+        {
+            base.Init(ttm);
+        }
+
+        public override void SetLaw()
+        {
+            this.CheckLucHai(ChiEnum.Ti, ChiEnum.Mui);
+            this.CheckLucHai(ChiEnum.Suu, ChiEnum.Ngo);
+            this.CheckLucHai(ChiEnum.Dan, ChiEnum.Ty);
+
+            this.CheckLucHai(ChiEnum.Mao, ChiEnum.Thin);
+            this.CheckLucHai(ChiEnum.Than, ChiEnum.Hoi);
+            this.CheckLucHai(ChiEnum.Dau, ChiEnum.Tuat);
+        }
+
+        private void CheckLucHai(ChiEnum chi1, ChiEnum chi2)
+        {
+            var chi1Id = TatcaTru.FindIndex(u => u.DiaChi.Ten == chi1);
+            var chi2Id = TatcaTru.FindIndex(u => u.DiaChi.Ten == chi2);
+
+            if (chi1Id != -1 && chi2Id != -1)
+            {
+                var diaChi1 = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == chi1);
+                var diaChi2 = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == chi2);
+
+                string thuocTinh = Constants.ThuocTinh.LUC_HAI;
+
+                var lucHai = string.Empty;
+                var tiMui = new List<ChiEnum> { ChiEnum.Ti, ChiEnum.Mui };
+                var suuNgo = new List<ChiEnum> { ChiEnum.Suu, ChiEnum.Ngo };
+                var danTy = new List<ChiEnum> { ChiEnum.Dan, ChiEnum.Ty };
+
+                var maoThin = new List<ChiEnum> { ChiEnum.Mao, ChiEnum.Thin };
+                var dauTuat = new List<ChiEnum> { ChiEnum.Dau, ChiEnum.Tuat };
+                var thanHoi = new List<ChiEnum> { ChiEnum.Than, ChiEnum.Hoi };
+
+                if (tiMui.Contains(chi1))
+                {
+                    lucHai = Constants.DiaChiLucHai.TI_MUI;
+                }
+                else if (suuNgo.Contains(chi1))
+                {
+                    lucHai = Constants.DiaChiLucHai.SUU_NGO;
+                }
+                else if (danTy.Contains(chi1))
+                {
+                    lucHai = Constants.DiaChiLucHai.DAN_TY;
+                }
+                else if (maoThin.Contains(chi1))
+                {
+                    lucHai = Constants.DiaChiLucHai.MAO_THIN;
+                }
+                else if (dauTuat.Contains(chi1))
+                {
+                    lucHai = Constants.DiaChiLucHai.DAU_TUAT;
+                }
+                else if (thanHoi.Contains(chi1))
+                {
+                    lucHai = Constants.DiaChiLucHai.THAN_HOI;
+                }
+
+                if (!diaChi1.ThuocTinh.Keys.Contains(thuocTinh))
+                {
+                    diaChi1.ThuocTinh.Add(thuocTinh, lucHai);
+                }
+
+                if (!diaChi2.ThuocTinh.Keys.Contains(thuocTinh))
+                {
+                    diaChi2.ThuocTinh.Add(thuocTinh, lucHai);
                 }
 
             }
