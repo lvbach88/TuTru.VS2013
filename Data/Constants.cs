@@ -72,6 +72,12 @@ namespace Data
             public static string BAN_TAM_HOP = "BAN_TAM_HOP";
             #endregion Tam Hop
 
+            #region Tuong Hinh
+            public static string TU_HINH = "TU_HINH";
+            public static string NHI_HINH = "NHI_HINH";
+            public static string TAM_HINH = "TAM_HINH";
+
+            #endregion Tuong Hinh
         }
 
         public static class DiaChiLucHop
@@ -141,6 +147,19 @@ Neu la hop Thuc Than, com an ao mac tai loc doi dao.
 Neu la hop Nguyen Than Dai Hao, nguoi khong phep tac, noi thi cao sang ma hanh thi thap kem, gan tieu nhan xa quan tu.
 Neu la hop Ham Tri, thuong la dam loan bat luong, pham tuc.
 Tam hop, nam hop thi dep, nu hop thi da dam. Phu Nhan Ky Hop.";
+        }
+
+        public static class DiaChiTuongHinh
+        {
+            public static string TU_HINH = @"Nguoi khong co tinh tu chu, dung mao tho kech.
+Lam viec co dau co duoi nhung hay co chap, thuong roi vao hoan canh kho khan, noi tam hiem doc.
+Neu Tu, Tuyet cung tru thi suy nghi nong noi.
+Ngay sinh co Tu Hinh, vo chong co benh.
+Gio sinh co hinh nay, con cai om dau";
+
+
+            public static string GUIDELINES = @"Tu tru co 2 to tu hinh cang xau. Menh tu tru dep la khong co Tu Hinh.
+Luu y: Tu Hinh chi khi 2 chu dung ke nhau, cach nhau khong tinh.";
         }
     }
 }

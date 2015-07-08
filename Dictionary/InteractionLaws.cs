@@ -467,4 +467,53 @@ namespace Business
             }
         }
     }
+
+    public class DiaChiTuongHinh : InteractionLaws
+    {
+        public DiaChiTuongHinh(TuTruMap ttm)
+        {
+            base.Init(ttm);
+        }
+
+        public override void SetLaw()
+        {
+            //throw new NotImplementedException();
+            this.CheckTuHinh();
+        }
+
+        #region Tu Hinh
+        private void CheckTuHinh()
+        {
+            this.CheckTuHinhTheoChi(ChiEnum.Thin);
+            this.CheckTuHinhTheoChi(ChiEnum.Ngo);
+            this.CheckTuHinhTheoChi(ChiEnum.Dau);
+            this.CheckTuHinhTheoChi(ChiEnum.Hoi);
+        }
+
+        private void CheckTuHinhTheoChi(ChiEnum chi)
+        {
+            for (int i = 0; i < this.TuTru.Count-1; i++)
+            {
+                var currTru = this.TuTru[i];
+                var nextTru = this.TuTru[i + 1];
+                if (currTru.DiaChi.Ten == chi && nextTru.DiaChi.Ten == chi)
+                {
+                    //Tu Hinh se la thuoc tinh cua Tru. 
+                    //This is a work-around.
+                    if (!currTru.ThuocTinh.ContainsKey(Constants.ThuocTinh.TU_HINH))
+                    {
+                        currTru.ThuocTinh.Add(Constants.ThuocTinh.TU_HINH, Constants.DiaChiTuongHinh.TU_HINH);
+                    }
+
+
+                    if (!nextTru.ThuocTinh.ContainsKey(Constants.ThuocTinh.TU_HINH))
+                    {
+                        nextTru.ThuocTinh.Add(Constants.ThuocTinh.TU_HINH, Constants.DiaChiTuongHinh.TU_HINH);
+                    }
+                }
+            }
+        }
+
+        #endregion Tu Hinh
+    }
 }
