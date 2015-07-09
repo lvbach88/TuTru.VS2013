@@ -78,6 +78,8 @@ namespace Data
             public static string TAM_HINH = "TAM_HINH";
 
             #endregion Tuong Hinh
+
+            public static string TUONG_LIEN = "TUONG_LIEN";
         }
 
         public static class DiaChiLucHop
@@ -157,9 +159,45 @@ Neu Tu, Tuyet cung tru thi suy nghi nong noi.
 Ngay sinh co Tu Hinh, vo chong co benh.
 Gio sinh co hinh nay, con cai om dau";
 
+            public static string NHI_HINH = @"Thieu tinh doc lap tu chu, hanh dong thuong dau voi duoi chuot, co chap, thanh kien, thuong roi vao hoan canh kho khan, dung mao xau xi, noi tam ac doc, tinh tinh hung bao, khong biet le nghi, bat hoa voi moi nguoi, ban be ghet bo xa cach, bat hieu, hai den nguoi than.
+Phu nu bi hinh nay bi chong khac che. Me con bat hoa de ton hai.
+Ngay sinh gap hinh nay vo hoac chong co benh.
+Gio sinh gap hinh nay con cai benh tat yeu duoi.";
+
+            public static string DAN_TY_THAN = @"Hinh vo on. Nguoi ma tu tru co hinh nay ma gap Tue Van tuong hinh: Tinh tinh tho bao, bac nghia hoac roi vao hiem hoa, hai nguoi.
+Neu lai toa o Tu Tuyet thi rat xau, hay gap benh tat, tai uong. 
+Nu phai song co qua, de ton thai.
+Menh quy thi hieu sat, thich cong danh.
+Menh tien thi loi noi va viec lam trai nguoc, tham lam";
+
+            public static string SUU_TUAT_MUI = @"Hinh cay the. Nguoi ma co tu tru nay la cay the ban than qua manh me, de gap do vo, thap bai. 
+Neu gap Truong Sinh, Moc Duc, Quan Doi, Lam Quan, De Vuong, tinh tinh cuong truc.
+Neu gap Tu Tuyet, ti tien giao hoat, thuong co benh de gay tai hoa.
+Nu phai song co doc.
+Menh quy thi thanh liem chinh truc.
+Menh tien thi hay pham phap, bi hinh phat.";
+
 
             public static string GUIDELINES = @"Tu tru co 2 to tu hinh cang xau. Menh tu tru dep la khong co Tu Hinh.
 Luu y: Tu Hinh chi khi 2 chu dung ke nhau, cach nhau khong tinh.";
+        }
+
+        public static class DiaChiTuongLien
+        {
+            public static int SO_TUONG_LIEN = 3;
+
+            public static string TAM_TI = @"Nang ve hon nhan nhieu trac tro.";
+            public static string TAM_SUU = @"Co nhieu vo.";
+            public static string TAM_DAN = @"Song 1 minh.";
+
+            public static string TAM_MAO = @"Gian ac.";
+            public static string TAM_TY = @"Hinh va hai.";
+            public static string TAM_NGO = @"Khac vo.";
+
+            public static string TAM_MUI = @"Dinh khong vong.";
+            public static string TAM_THAN = @"Nguoi khuyet tat.";
+            public static string TAM_DAU = @"Song co doc.";
+            public static string TAM_HOI = @"Song 1 minh.";
         }
     }
 }

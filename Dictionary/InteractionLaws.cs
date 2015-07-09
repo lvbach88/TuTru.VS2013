@@ -479,6 +479,8 @@ namespace Business
         {
             //throw new NotImplementedException();
             this.CheckTuHinh();
+            this.CheckNhiHinh();
+            this.CheckTamHinh();
         }
 
         #region Tu Hinh
@@ -515,5 +517,144 @@ namespace Business
         }
 
         #endregion Tu Hinh
+
+        #region Nhi Hinh
+        private void CheckNhiHinh()
+        {
+            var tiId = this.TuTru.FindIndex(u => u.DiaChi.Ten == ChiEnum.Ti);
+            var maoId = this.TuTru.FindIndex(u => u.DiaChi.Ten == ChiEnum.Mao);
+
+            DiaChi ti = null, mao = null;
+            if (tiId != -1 && maoId != -1)
+            {
+                ti = this.TuTru[tiId].DiaChi;
+                mao = this.TuTru[maoId].DiaChi;
+                var thuocTinh = Constants.ThuocTinh.NHI_HINH;
+                ti.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongHinh.NHI_HINH);
+                mao.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongHinh.NHI_HINH);
+            }
+        }
+
+        #endregion Nhi Hinh
+
+        #region Tam Hinh
+        private void CheckTamHinh()
+        {
+            this.CheckTamHinhTheoChi(ChiEnum.Dan, ChiEnum.Ty, ChiEnum.Than);
+            this.CheckTamHinhTheoChi(ChiEnum.Suu, ChiEnum.Tuat, ChiEnum.Mui);
+        }
+
+        private void CheckTamHinhTheoChi(ChiEnum chi1, ChiEnum chi2, ChiEnum chi3)
+        {
+            var chi1Id = this.TuTru.FindIndex(u => u.DiaChi.Ten == chi1);
+            var chi2Id = this.TuTru.FindIndex(u => u.DiaChi.Ten == chi2);
+            var chi3Id = this.TuTru.FindIndex(u => u.DiaChi.Ten == chi3);
+
+            if (chi1Id != -1 && chi2Id != -1 && chi3Id != -1)
+            {
+                var dc1 = this.TuTru[chi1Id].DiaChi;
+                var dc2 = this.TuTru[chi2Id].DiaChi;
+                var dc3 = this.TuTru[chi3Id].DiaChi;
+
+                var dantythan = new List<ChiEnum> {ChiEnum.Dan, ChiEnum.Ty, ChiEnum.Than };
+                var suutuatmui = new List<ChiEnum> { ChiEnum.Suu, ChiEnum.Tuat, ChiEnum.Mui };
+
+                if (dantythan.Contains(chi1))
+                {
+                    dc1.ThuocTinh.Add(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.DAN_TY_THAN);
+                    dc2.ThuocTinh.Add(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.DAN_TY_THAN);
+                    dc3.ThuocTinh.Add(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.DAN_TY_THAN);
+                }
+                else if (suutuatmui.Contains(chi1))
+                {
+                    dc1.ThuocTinh.Add(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.SUU_TUAT_MUI);
+                    dc2.ThuocTinh.Add(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.SUU_TUAT_MUI);
+                    dc3.ThuocTinh.Add(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.SUU_TUAT_MUI);
+                }
+               
+            }
+
+        }
+
+        #endregion Tam Hinh
+    }
+
+    public class DiaChiTuongLien : InteractionLaws
+    {
+        public DiaChiTuongLien(TuTruMap ttm)
+        {
+            base.Init(ttm);
+        }
+
+        public override void SetLaw()
+        {
+            //throw new NotImplementedException();
+            var chiList = new List<ChiEnum> {ChiEnum.Ti, ChiEnum.Suu, ChiEnum.Dan, 
+                ChiEnum.Mao, ChiEnum.Ty, ChiEnum.Ngo,
+                ChiEnum.Mui, ChiEnum.Than, ChiEnum.Dau, ChiEnum.Hoi};
+            foreach (var chi in chiList)
+            {
+                this.CheckTuongLien(chi);
+            }
+        }
+
+        private void CheckTuongLien(ChiEnum chi)
+        {
+            int count = 0;
+            foreach (var item in this.TuTru)
+            {
+                if (item.DiaChi.Ten == chi)
+                {
+                    count++;
+                }
+            }
+
+            if (count == Constants.DiaChiTuongLien.SO_TUONG_LIEN)
+            {
+                var dc = this.TuTru.Find(u => u.DiaChi.Ten == chi);
+                var thuocTinh = Constants.ThuocTinh.TUONG_LIEN;
+                switch (chi)
+                {
+                    case ChiEnum.None:
+                        break;
+                    case ChiEnum.Ti:
+                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_TI);
+                        break;
+                    case ChiEnum.Suu:
+                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_SUU);
+                        break;
+                    case ChiEnum.Dan:
+                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_DAN);
+                        break;
+                    case ChiEnum.Mao:
+                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_MAO);
+                        break;
+                    case ChiEnum.Thin:
+                        break;
+                    case ChiEnum.Ty:
+                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_TY);
+                        break;
+                    case ChiEnum.Ngo:
+                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_NGO);
+                        break;
+                    case ChiEnum.Mui:
+                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_MUI);
+                        break;
+                    case ChiEnum.Than:
+                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_THAN);
+                        break;
+                    case ChiEnum.Dau:
+                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_DAU);
+                        break;
+                    case ChiEnum.Tuat:
+                        break;
+                    case ChiEnum.Hoi:
+                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_HOI);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
     }
 }
