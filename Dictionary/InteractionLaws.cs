@@ -23,6 +23,8 @@ namespace Business
             TuTru.AddRange(laso.TuTru.Values.ToList<Tru>());
 
             TatcaTru.AddRange(laso.TuTru.Values.ToList<Tru>());
+            TatcaTru.Add(laso.CungMenh);
+            TatcaTru.Add(laso.ThaiNguyen);
             TatcaTru.Add(ttm.DaiVanHienTai);
             TatcaTru.Add(LookUpTable.TruOfTheYear());
         }
@@ -478,12 +480,16 @@ namespace Business
         public override void SetLaw()
         {
             //throw new NotImplementedException();
+
             this.CheckTuHinh();
             this.CheckNhiHinh();
             this.CheckTamHinh();
         }
 
         #region Tu Hinh
+        /// <summary>
+        /// Tu Hinh belongs to ThuocTinh of Tru
+        /// </summary>
         private void CheckTuHinh()
         {
             this.CheckTuHinhTheoChi(ChiEnum.Thin);

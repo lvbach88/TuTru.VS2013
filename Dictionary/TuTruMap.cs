@@ -49,6 +49,13 @@ namespace Business
                 tru.ThuocTinh.Add(Constants.VONG_TRUONG_SINH, LookUpTable.VongTruongSinh(truNgay.ThienCan.Can, tru.DiaChi.Ten));
             }
 
+            var cm = this.LaSoCuaToi.CungMenh;
+            var tn = this.LaSoCuaToi.ThaiNguyen;
+            SetNapAm(cm);
+            cm.ThuocTinh.Add(Constants.VONG_TRUONG_SINH, LookUpTable.VongTruongSinh(truNgay.ThienCan.Can, cm.DiaChi.Ten));
+            SetNapAm(tn);
+            tn.ThuocTinh.Add(Constants.VONG_TRUONG_SINH, LookUpTable.VongTruongSinh(truNgay.ThienCan.Can, tn.DiaChi.Ten));
+
             foreach (var tru in this.LaSoCuaToi.DaiVan)
             {
                 SetNapAm(tru);
@@ -299,8 +306,8 @@ namespace Business
                 default:
                     break;
             }
-
-            this.LaSoCuaToi.TuTru.Add(Constants.CUNG_MENH, cungMenh);
+            this.LaSoCuaToi.CungMenh = cungMenh;
+            //this.LaSoCuaToi.TuTru.Add(Constants.CUNG_MENH, cungMenh);
         }
 
         public void CreateThaiNguyen()
@@ -315,7 +322,8 @@ namespace Business
             int thaiNguyenChiIndex = (chiThangIndex + Constants.THAI_NGUYEN_CHI_SHIFT + nChi) % nChi;
 
             var thaiNguyen = new Tru(TongHopCanChi.MuoiThienCan[thaiNguyenCanIndex], TongHopCanChi.MuoiHaiDiaChi[thaiNguyenChiIndex]);
-            this.LaSoCuaToi.TuTru.Add(Constants.THAI_NGUYEN, thaiNguyen);
+            this.LaSoCuaToi.ThaiNguyen = thaiNguyen;
+            //this.LaSoCuaToi.TuTru.Add(Constants.THAI_NGUYEN, thaiNguyen);
         }
 
         /// <summary>

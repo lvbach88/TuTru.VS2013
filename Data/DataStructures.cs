@@ -333,8 +333,8 @@ namespace Data
         public List<Tru> DaiVan { get; set; }
         public List<Tru> TieuVan { get; set; }
         public List<int> TuoiDaiVan { get; set; }
-        //public Tru CungMenh { get; set; }
-        //public Tru ThaiNguyen { get; set; }
+        public Tru CungMenh { get; set; }
+        public Tru ThaiNguyen { get; set; }
 
         public LaSo()
         {
