@@ -158,7 +158,7 @@ namespace BusinessTest
 
         #region Dia Chi Luc Hop
         [TestMethod]
-        public void Check_LucHopTho1()
+        public void Check_LucHop_Tho1()
         {
             string canNam = "Dinh", chiNam = "Mao",
                     canThang = "Quy", chiThang = "Suu",
@@ -183,7 +183,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void Check_LucHopTho2()
+        public void Check_LucHop_Tho2()
         {
             string canNam = "Dinh", chiNam = "Mao",
                     canThang = "Quy", chiThang = "Suu",
@@ -208,7 +208,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void Check_LucHopMoc()
+        public void Check_LucHop_Moc()
         {
             string canNam = "Dinh", chiNam = "Mao",
                     canThang = "Quy", chiThang = "Suu",
@@ -234,7 +234,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void Check_LucHopHoa()
+        public void Check_LucHop_Hoa()
         {
             string canNam = "Dinh", chiNam = "Mao",
                     canThang = "Quy", chiThang = "Suu",
@@ -259,7 +259,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void Check_LucHopKim()
+        public void Check_LucHop_Kim()
         {
             string canNam = "Dinh", chiNam = "Mao",
                     canThang = "Quy", chiThang = "Suu",
@@ -284,7 +284,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void Check_LucHopThuy()
+        public void Check_LucHop_Thuy()
         {
             string canNam = "Dinh", chiNam = "Mao",
                     canThang = "Quy", chiThang = "Suu",
@@ -312,7 +312,7 @@ namespace BusinessTest
 
         #region Dia Chi Luc Xung
         [TestMethod]
-        public void CheckLucXungTiNgo()
+        public void Check_LucXung_TiNgo()
         {
             string canNam = "Binh", chiNam = "Ti",
                     canThang = "Canh", chiThang = "Ngo",
@@ -337,7 +337,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckLucXungSuuMui()
+        public void Check_LucXung_SuuMui()
         {
             string canNam = "Binh", chiNam = "Ti",
                     canThang = "Ky", chiThang = "Suu",
@@ -362,7 +362,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckLucXungDanThan()
+        public void Check_LucXung_DanThan()
         {
             string canNam = "Binh", chiNam = "Dan",
                     canThang = "Ky", chiThang = "Suu",
@@ -387,7 +387,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckLucXungMaoDau()
+        public void Check_LucXung_MaoDau()
         {
             string canNam = "Dinh", chiNam = "Mao",
                     canThang = "Ky", chiThang = "Suu",
@@ -412,7 +412,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckLucXungThinTuat()
+        public void Check_LucXung_ThinTuat()
         {
             string canNam = "Binh", chiNam = "Dan",
                     canThang = "Ky", chiThang = "Suu",
@@ -437,7 +437,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckLucXungTyHoi()
+        public void Check_LucXung_TyHoi()
         {
             string canNam = "Binh", chiNam = "Dan",
                     canThang = "Quy", chiThang = "Ty",
@@ -465,7 +465,7 @@ namespace BusinessTest
 
         #region Dia Chi Luc Hai
         [TestMethod]
-        public void CheckLucHaiTiMui()
+        public void Check_LucHai_TiMui()
         {
             string canNam = "Binh", chiNam = "Ti",
                     canThang = "Canh", chiThang = "Ngo",
@@ -490,7 +490,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckLucHaiSuuNgo()
+        public void Check_LucHai_SuuNgo()
         {
             string canNam = "Binh", chiNam = "Ti",
                     canThang = "Ky", chiThang = "Suu",
@@ -515,7 +515,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckLucHaiMaoThin()
+        public void Check_LucHai_MaoThin()
         {
             string canNam = "Ky", chiNam = "Mao",
                     canThang = "Ky", chiThang = "Suu",
@@ -540,7 +540,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckLucHaiTyDan()
+        public void Check_LucHai_TyDan()
         {
             string canNam = "Dinh", chiNam = "Ty",
                     canThang = "Ky", chiThang = "Suu",
@@ -565,7 +565,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckLucHaiDauTuat()
+        public void Check_LucHai_DauTuat()
         {
             string canNam = "Binh", chiNam = "Dan",
                     canThang = "Ky", chiThang = "Dau",
@@ -590,7 +590,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckLucHaiThanHoi()
+        public void Check_LucHai_ThanHoi()
         {
             string canNam = "Binh", chiNam = "Than",
                     canThang = "Quy", chiThang = "Ty",
@@ -618,7 +618,7 @@ namespace BusinessTest
 
         #region Dia Chi Tu Hinh
         [TestMethod]
-        public void CheckTuHinhThin()
+        public void Check_TuHinh_Thin()
         {
             string canNam = "Nham", chiNam = "Thin",
                     canThang = "Giap", chiThang = "Thin",
@@ -643,7 +643,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckTuHinhThin_False()
+        public void Check_TuHinh_Thin_False()
         {
             string canNam = "Nham", chiNam = "Thin",
                     canThang = "Tan", chiThang = "Mui",
@@ -668,7 +668,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckTuHinhNgo()
+        public void Check_TuHinh_Ngo()
         {
             string canNam = "Nham", chiNam = "Thin",
                     canThang = "Giap", chiThang = "Thin",
@@ -693,7 +693,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckTuHinhNgo_False()
+        public void Check_TuHinh_Ngo_False()
         {
             string canNam = "Mau", chiNam = "Ngo",
                     canThang = "Giap", chiThang = "Thin",
@@ -718,7 +718,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckTuHinhDau()
+        public void Check_TuHinh_Dau()
         {
             string canNam = "Nham", chiNam = "Thin",
                     canThang = "Giap", chiThang = "Thin",
@@ -743,7 +743,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckTuHinhDau_False()
+        public void Check_TuHinh_Dau_False()
         {
             string canNam = "Tan", chiNam = "Dau",
                     canThang = "Giap", chiThang = "Thin",
@@ -768,7 +768,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckTuHinhHoi()
+        public void Check_TuHinh_Hoi()
         {
             string canNam = "Nham", chiNam = "Thin",
                     canThang = "Quy", chiThang = "Hoi",
@@ -793,7 +793,7 @@ namespace BusinessTest
         }
 
         [TestMethod]
-        public void CheckTuHinhHoi_False()
+        public void Check_TuHinh_Hoi_False()
         {
             string canNam = "Nham", chiNam = "Thin",
                     canThang = "Quy", chiThang = "Hoi",
@@ -818,6 +818,99 @@ namespace BusinessTest
         }
 
         #endregion Dia Chi Tu Hinh
+
+        #region Dia Chi Nhi Hinh
+        [TestMethod]
+        public void Check_NhiHinh_TiMao()
+        {
+            string canNam = "Nham", chiNam = "Ti",
+                    canThang = "Quy", chiThang = "Hoi",
+                    canNgay = "Dinh", chiNgay = "Mao",
+                    canGio = "Ky", chiGio = "Hoi",
+                gt = "Nam";
+            int tuoi = 4, tuoiDV = 44;
+            Business.TuTruMap mybiz = new Business.TuTruMap();
+            mybiz.InitLaSo(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio, tuoi, tuoiDV);
+
+            var dcth = new DiaChiTuongHinh(mybiz);
+            dcth.SetLaw();
+
+            var ti = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ti);
+
+            var mao = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Mao);
+
+            Assert.IsTrue(ti.ThuocTinh.Keys.Contains(Constants.ThuocTinh.NHI_HINH));
+            Assert.IsTrue(ti.ThuocTinh[Constants.ThuocTinh.NHI_HINH] == Constants.DiaChiTuongHinh.NHI_HINH);
+
+            Assert.IsTrue(mao.ThuocTinh.Keys.Contains(Constants.ThuocTinh.NHI_HINH));
+            Assert.IsTrue(mao.ThuocTinh[Constants.ThuocTinh.NHI_HINH] == Constants.DiaChiTuongHinh.NHI_HINH);
+
+        }
+        #endregion Dia Chi Nhi Hinh
+
+        #region Dia Chi Tam Hinh
+        [TestMethod]
+        public void Check_TamHinh_DanTyThan()
+        {
+            string canNam = "Nham", chiNam = "Dan",
+                    canThang = "Quy", chiThang = "Hoi",
+                    canNgay = "Dinh", chiNgay = "Ty",
+                    canGio = "Canh", chiGio = "Than",
+                gt = "Nam";
+            int tuoi = 4, tuoiDV = 44;
+            Business.TuTruMap mybiz = new Business.TuTruMap();
+            mybiz.InitLaSo(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio, tuoi, tuoiDV);
+
+            var dcth = new DiaChiTuongHinh(mybiz);
+            dcth.SetLaw();
+
+            var dan = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Dan);
+
+            var than = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Than);
+
+            var ty = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ty);
+
+            Assert.IsTrue(dan.ThuocTinh.Keys.Contains(Constants.ThuocTinh.TAM_HINH));
+            Assert.IsTrue(dan.ThuocTinh[Constants.ThuocTinh.TAM_HINH] == Constants.DiaChiTuongHinh.DAN_TY_THAN);
+
+            Assert.IsTrue(than.ThuocTinh.Keys.Contains(Constants.ThuocTinh.TAM_HINH));
+            Assert.IsTrue(than.ThuocTinh[Constants.ThuocTinh.TAM_HINH] == Constants.DiaChiTuongHinh.DAN_TY_THAN);
+
+            Assert.IsTrue(ty.ThuocTinh.Keys.Contains(Constants.ThuocTinh.TAM_HINH));
+            Assert.IsTrue(ty.ThuocTinh[Constants.ThuocTinh.TAM_HINH] == Constants.DiaChiTuongHinh.DAN_TY_THAN);
+        }
+
+        [TestMethod]
+        public void Check_TamHinh_SuuTuatMui()
+        {
+            string canNam = "Nham", chiNam = "Tuat",
+                    canThang = "Quy", chiThang = "Suu",
+                    canNgay = "Dinh", chiNgay = "Mui",
+                    canGio = "Canh", chiGio = "Than",
+                gt = "Nam";
+            int tuoi = 4, tuoiDV = 44;
+            Business.TuTruMap mybiz = new Business.TuTruMap();
+            mybiz.InitLaSo(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio, tuoi, tuoiDV);
+
+            var dcth = new DiaChiTuongHinh(mybiz);
+            dcth.SetLaw();
+
+            var suu = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Suu);
+
+            var tuat = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Tuat);
+
+            var mui = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Mui);
+
+            Assert.IsTrue(suu.ThuocTinh.Keys.Contains(Constants.ThuocTinh.TAM_HINH));
+            Assert.IsTrue(suu.ThuocTinh[Constants.ThuocTinh.TAM_HINH] == Constants.DiaChiTuongHinh.SUU_TUAT_MUI);
+
+            Assert.IsTrue(tuat.ThuocTinh.Keys.Contains(Constants.ThuocTinh.TAM_HINH));
+            Assert.IsTrue(tuat.ThuocTinh[Constants.ThuocTinh.TAM_HINH] == Constants.DiaChiTuongHinh.SUU_TUAT_MUI);
+
+            Assert.IsTrue(mui.ThuocTinh.Keys.Contains(Constants.ThuocTinh.TAM_HINH));
+            Assert.IsTrue(mui.ThuocTinh[Constants.ThuocTinh.TAM_HINH] == Constants.DiaChiTuongHinh.SUU_TUAT_MUI);
+        }
+        #endregion Dia Chi Tam Hinh
 
     }
 }
