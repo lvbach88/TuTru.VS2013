@@ -353,19 +353,35 @@ namespace Business
 
             if (xuan.Contains(dc.Ten))
             {
-                dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Moc);
+                if (!dc.ThuocTinh.Keys.Contains(thuocTinh))
+                {
+                    dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Moc);
+                }
+                
             }
             else if (ha.Contains(dc.Ten))
             {
-                dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Hoa);
+                if (!dc.ThuocTinh.Keys.Contains(thuocTinh))
+                {
+                    dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Hoa);
+                }
+                
             }
             else if (thu.Contains(dc.Ten))
             {
-                dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Kim);
+                if (!dc.ThuocTinh.Keys.Contains(thuocTinh))
+                {
+                    dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Kim);
+                }
+                
             }
             else if (dong.Contains(dc.Ten))
             {
-                dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Thuy);
+                if (!dc.ThuocTinh.Keys.Contains(thuocTinh))
+                {
+                    dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Thuy);
+                }
+                
             }
         }
     }
@@ -441,11 +457,6 @@ namespace Business
 
         private void SetThuocTinh(DiaChi dc, string thuocTinh)
         {
-            this.CheckTamHop(ChiEnum.Dan, ChiEnum.Ngo, ChiEnum.Tuat);
-            this.CheckTamHop(ChiEnum.Ty, ChiEnum.Dau, ChiEnum.Suu);
-            this.CheckTamHop(ChiEnum.Than, ChiEnum.Ti, ChiEnum.Thin);
-            this.CheckTamHop(ChiEnum.Hoi, ChiEnum.Mao, ChiEnum.Mui);
-
             var hoa = new List<ChiEnum> { ChiEnum.Dan, ChiEnum.Ngo, ChiEnum.Tuat };
             var kim = new List<ChiEnum> { ChiEnum.Ty, ChiEnum.Dau, ChiEnum.Suu };
             var thuy = new List<ChiEnum> { ChiEnum.Than, ChiEnum.Ti, ChiEnum.Thin };
@@ -453,19 +464,32 @@ namespace Business
 
             if (hoa.Contains(dc.Ten))
             {
-                dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Hoa);
+                if (!dc.ThuocTinh.Keys.Contains(thuocTinh))
+                {
+                    dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Hoa);
+                }
+                
             }
             else if (kim.Contains(dc.Ten))
             {
-                dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Kim);
+                if (!dc.ThuocTinh.Keys.Contains(thuocTinh))
+                {
+                    dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Kim);
+                }
             }
             else if (thuy.Contains(dc.Ten))
             {
-                dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Thuy);
+                if (!dc.ThuocTinh.Keys.Contains(thuocTinh))
+                {
+                    dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Thuy);
+                }
             }
             else if (moc.Contains(dc.Ten))
             {
-                dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Moc);
+                if (!dc.ThuocTinh.Keys.Contains(thuocTinh))
+                {
+                    dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Moc);
+                }
             }
         }
     }
