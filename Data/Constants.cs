@@ -82,6 +82,11 @@ namespace Data
             public static string TUONG_LIEN = "TUONG_LIEN";
         }
 
+        public static class ThanSat
+        {
+            public static string THIEN_AT_QUY_NHAN = "THIEN_AT_QUY_NHAN";
+        }
+
         public static class DiaChiLucHop
         {
             public static string LUC_HOP_KHAC = @"TRONG HOP CO KHAC: Truoc tot ma sau xau, truoc nong ma sau lanh.

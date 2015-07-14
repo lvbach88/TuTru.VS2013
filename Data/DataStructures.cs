@@ -113,6 +113,7 @@ namespace Data
         public ThienCan TrungKhi { get; private set; }
         public ThienCan TapKhi { get; private set; }
         public Dictionary<string, object> ThuocTinh { get; set; }
+        public Dictionary<string, object> ThanSat { get; set; }
 
 
         public DiaChi(ChiEnum chi, ThienCan bankhi, ThienCan trungkhi, ThienCan tapkhi)
@@ -123,6 +124,7 @@ namespace Data
             this.TapKhi = tapkhi;
 
             this.ThuocTinh = new Dictionary<string, object>();
+            this.ThanSat = new Dictionary<string, object>();
         }
 
     }
@@ -137,6 +139,7 @@ namespace Data
         public AmDuongEnum AmDuong { get; private set; }
         public ThapThanEnum ThapThan { get; set; }
         public Dictionary<string, object> ThuocTinh { get; set; }
+        public Dictionary<string, object> ThanSat { get; set; }
 
 
         private ThienCan(CanEnum can, NguHanhEnum nguHanh, AmDuongEnum amDuong)
@@ -145,6 +148,7 @@ namespace Data
             this.NguHanh = nguHanh;
             this.AmDuong = amDuong;
             this.ThapThan = ThapThanEnum.None;
+            this.ThanSat = new Dictionary<string, object>();
         }
 
         public ThienCan(CanEnum can)

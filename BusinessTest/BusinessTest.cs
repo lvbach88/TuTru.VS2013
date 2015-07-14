@@ -1150,5 +1150,52 @@ namespace BusinessTest
         }
         #endregion Dia Chi Tam Hinh
 
+        #region Dia Chi Tuong Lien
+        [TestMethod]
+        public void Check_TuongLien_TamTi()
+        {
+            string canNam = "Nham", chiNam = "Ti",
+                    canThang = "Quy", chiThang = "Suu",
+                    canNgay = "Mau", chiNgay = "Ti",
+                    canGio = "Canh", chiGio = "Ti",
+                gt = "Nam";
+            int tuoi = 4, tuoiDV = 44;
+            Business.TuTruMap mybiz = new Business.TuTruMap();
+            mybiz.InitLaSo(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio, tuoi, tuoiDV);
+
+            var dcth = new DiaChiTuongLien(mybiz);
+            dcth.SetLaw();
+
+            var ti = mybiz.LaSoCuaToi.TuTru.Values.ToList<Tru>().Find(u => u.DiaChi.Ten == ChiEnum.Ti);
+
+
+            Assert.IsTrue(ti.ThuocTinh.Keys.Contains(Constants.ThuocTinh.TUONG_LIEN));
+            Assert.IsTrue(ti.ThuocTinh[Constants.ThuocTinh.TUONG_LIEN] == Constants.DiaChiTuongLien.TAM_TI);
+        }
+
+        [TestMethod]
+        public void Check_TuongLien_TamHoi()
+        {
+            string canNam = "Quy", chiNam = "Hoi",
+                    canThang = "Dinh", chiThang = "Hoi",
+                    canNgay = "Tan", chiNgay = "Hoi",
+                    canGio = "Canh", chiGio = "Ti",
+                gt = "Nam";
+            int tuoi = 4, tuoiDV = 44;
+            Business.TuTruMap mybiz = new Business.TuTruMap();
+            mybiz.InitLaSo(gt, canNam, chiNam, canThang, chiThang, canNgay, chiNgay, canGio, chiGio, tuoi, tuoiDV);
+
+            var dcth = new DiaChiTuongLien(mybiz);
+            dcth.SetLaw();
+
+            var hoi = mybiz.LaSoCuaToi.TuTru.Values.ToList<Tru>().Find(u => u.DiaChi.Ten == ChiEnum.Hoi);
+
+
+            Assert.IsTrue(hoi.ThuocTinh.Keys.Contains(Constants.ThuocTinh.TUONG_LIEN));
+            Assert.IsTrue(hoi.ThuocTinh[Constants.ThuocTinh.TUONG_LIEN] == Constants.DiaChiTuongLien.TAM_HOI);
+        }
+
+        #endregion Dia Chi Tuong Lien
+
     }
 }
