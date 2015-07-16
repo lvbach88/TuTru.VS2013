@@ -76,5 +76,55 @@ namespace Business
                 }
             }
         }
+
+        private void ThienNguyetDucQuyNhan()
+        {
+            var thang = this.TTM.LaSoCuaToi.TuTru[Constants.TRU_THANG].DiaChi.Ten;
+
+            ThienCan canThienDuc = null, canNguyetDuc = null;
+            DiaChi chiThienDuc = null;
+
+
+            switch (thang)
+            {
+                case ChiEnum.None:
+                    break;
+                case ChiEnum.Ti:
+                    
+                    break;
+                case ChiEnum.Suu:
+                    break;
+                case ChiEnum.Dan:
+
+                    canThienDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Dinh);
+                    canNguyetDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Binh);
+                    canThienDuc.ThanSat.Add(Constants.ThanSat.THIEN_DUC, Constants.ThanSat.THIEN_DUC);
+                    canNguyetDuc.ThanSat.Add(Constants.ThanSat.NGUYET_DUC, Constants.ThanSat.NGUYET_DUC);
+
+                    break;
+                case ChiEnum.Mao:
+                    
+
+                    break;
+                case ChiEnum.Thin:
+                    break;
+                case ChiEnum.Ty:
+                    break;
+                case ChiEnum.Ngo:
+                    break;
+                case ChiEnum.Mui:
+                    break;
+                case ChiEnum.Than:
+                    break;
+                case ChiEnum.Dau:
+                    break;
+                case ChiEnum.Tuat:
+                    break;
+                case ChiEnum.Hoi:
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

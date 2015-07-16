@@ -85,6 +85,8 @@ namespace Data
         public static class ThanSat
         {
             public static string THIEN_AT_QUY_NHAN = "THIEN_AT_QUY_NHAN";
+            public static string THIEN_DUC = "THIEN_DUC";
+            public static string NGUYET_DUC = "NGUYET_DUC";
         }
 
         public static class DiaChiLucHop
