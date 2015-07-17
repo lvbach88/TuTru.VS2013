@@ -89,6 +89,10 @@ namespace Data
             public static string NGUYET_DUC = "NGUYET_DUC";
             public static string KHOI_CANH_QUY_NHAN = "KHOI_CANH_QUY_NHAN";
             public static string LOC_THAN = "LOC_THAN";
+            public static string KINH_DUONG = "KINH_DUONG";
+            public static string KIM_DU = "KIM_DU";
+            public static string VAN_XUONG = "VAN_XUONG";
+            public static string THIEN_Y = "THIEN_Y";
         }
 
         public static class DiaChiLucHop
