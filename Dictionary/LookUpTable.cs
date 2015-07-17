@@ -241,6 +241,11 @@ namespace Business
             return new Tru(TongHopCanChi.MuoiThienCan[canIndex], TongHopCanChi.MuoiHaiDiaChi[chiIndex]);
         }
 
+        public static bool IsTruMatched(Tru t, CanEnum can, ChiEnum chi)
+        {
+            return t.ThienCan.Can == can && t.DiaChi.Ten == chi;
+        }
+
         /// <summary>
         /// Create NapAm dictionary
         /// </summary>

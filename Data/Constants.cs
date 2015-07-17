@@ -87,6 +87,8 @@ namespace Data
             public static string THIEN_AT_QUY_NHAN = "THIEN_AT_QUY_NHAN";
             public static string THIEN_DUC = "THIEN_DUC";
             public static string NGUYET_DUC = "NGUYET_DUC";
+            public static string KHOI_CANH_QUY_NHAN = "KHOI_CANH_QUY_NHAN";
+            public static string LOC_THAN = "LOC_THAN";
         }
 
         public static class DiaChiLucHop
