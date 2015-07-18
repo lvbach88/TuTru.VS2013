@@ -93,6 +93,7 @@ namespace Data
             public static string KIM_DU = "KIM_DU";
             public static string VAN_XUONG = "VAN_XUONG";
             public static string THIEN_Y = "THIEN_Y";
+            public static string DICH_MA = "DICH_MA";
         }
 
         public static class DiaChiLucHop

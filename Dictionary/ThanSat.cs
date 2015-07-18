@@ -26,6 +26,7 @@ namespace Business
             KimDu();
             VanXuong();
             ThienY();
+
         }
 
         private void ThienAtQuyNhan()
@@ -33,154 +34,118 @@ namespace Business
             var namNgay = new List<CanEnum> {TTM.LaSoCuaToi.TuTru[Constants.TRU_NAM].ThienCan.Can,
                 TTM.LaSoCuaToi.TuTru[Constants.TRU_NGAY].ThienCan.Can};
 
-            ChiEnum chi1 = ChiEnum.None, chi2 = ChiEnum.None;
-
             if (namNgay.Contains(CanEnum.Giap) || namNgay.Contains(CanEnum.Mau))
             {
-                chi1 = ChiEnum.Mui;
-                chi2 = ChiEnum.Suu;
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Mui).AddThanSat(Constants.ThanSat.THIEN_AT_QUY_NHAN);
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Suu).AddThanSat(Constants.ThanSat.THIEN_AT_QUY_NHAN);
             }
             
             if (namNgay.Contains(CanEnum.At) || namNgay.Contains(CanEnum.Ky))
             {
-                chi1 = ChiEnum.Than;
-                chi2 = ChiEnum.Ti;
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Than).AddThanSat(Constants.ThanSat.THIEN_AT_QUY_NHAN);
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ti).AddThanSat(Constants.ThanSat.THIEN_AT_QUY_NHAN);
             }
 
             if (namNgay.Contains(CanEnum.Binh) || namNgay.Contains(CanEnum.Dinh))
             {
-                chi1 = ChiEnum.Dau;
-                chi2 = ChiEnum.Hoi;
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Dau).AddThanSat(Constants.ThanSat.THIEN_AT_QUY_NHAN);
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Hoi).AddThanSat(Constants.ThanSat.THIEN_AT_QUY_NHAN);
             }
 
             if (namNgay.Contains(CanEnum.Canh) || namNgay.Contains(CanEnum.Tan))
             {
-                chi1 = ChiEnum.Dan;
-                chi2 = ChiEnum.Ngo;
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Dan).AddThanSat(Constants.ThanSat.THIEN_AT_QUY_NHAN);
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ngo).AddThanSat(Constants.ThanSat.THIEN_AT_QUY_NHAN);
             }
 
             if (namNgay.Contains(CanEnum.Nham) || namNgay.Contains(CanEnum.Quy))
             {
-                chi1 = ChiEnum.Mao;
-                chi2 = ChiEnum.Ty;
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Mao).AddThanSat(Constants.ThanSat.THIEN_AT_QUY_NHAN);
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ty).AddThanSat(Constants.ThanSat.THIEN_AT_QUY_NHAN);
             }
 
-            if (chi1 != ChiEnum.None)
-            {
-                DiaChi dc = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == chi1);
-                if (!dc.ThanSat.ContainsKey(Constants.ThanSat.THIEN_AT_QUY_NHAN))
-                {
-                    dc.ThanSat.Add(Constants.ThanSat.THIEN_AT_QUY_NHAN, Constants.ThanSat.THIEN_AT_QUY_NHAN);
-                }
-            }
-
-            if (chi2 != ChiEnum.None)
-            {
-                DiaChi dc = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == chi2);
-                if (!dc.ThanSat.ContainsKey(Constants.ThanSat.THIEN_AT_QUY_NHAN))
-                {
-                    dc.ThanSat.Add(Constants.ThanSat.THIEN_AT_QUY_NHAN, Constants.ThanSat.THIEN_AT_QUY_NHAN);
-                }
-            }
         }
 
         private void ThienNguyetDucQuyNhan()
         {
             var thang = this.TTM.LaSoCuaToi.TuTru[Constants.TRU_THANG].DiaChi.Ten;
 
-            ThienCan canThienDuc = null, canNguyetDuc = null;
-            DiaChi chiThienDuc = null;
-
-
             switch (thang)
             {
                 case ChiEnum.None:
                     break;
                 case ChiEnum.Ti:
-                    chiThienDuc = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ty);
-                    chiThienDuc.ThanSat.Add(Constants.ThanSat.THIEN_DUC, Constants.ThanSat.THIEN_DUC);
-
-                    canNguyetDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Nham);
-                    canNguyetDuc.ThanSat.Add(Constants.ThanSat.NGUYET_DUC, Constants.ThanSat.NGUYET_DUC);
+                    
+                    TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ty).AddThanSat(Constants.ThanSat.THIEN_DUC);
+                    
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Nham).AddThanSat(Constants.ThanSat.NGUYET_DUC);
                     break;
                 case ChiEnum.Suu:
-                    canThienDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Canh);
-                    canThienDuc.ThanSat.Add(Constants.ThanSat.THIEN_DUC, Constants.ThanSat.THIEN_DUC);
-
-                    canNguyetDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Canh);
-                    canNguyetDuc.ThanSat.Add(Constants.ThanSat.NGUYET_DUC, Constants.ThanSat.NGUYET_DUC);
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Canh).AddThanSat(Constants.ThanSat.THIEN_DUC);
+                  
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Canh).AddThanSat(Constants.ThanSat.NGUYET_DUC);
+                    
                     break;
                 case ChiEnum.Dan:
 
-                    canThienDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Dinh);
-                    canNguyetDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Binh);
-                    canThienDuc.ThanSat.Add(Constants.ThanSat.THIEN_DUC, Constants.ThanSat.THIEN_DUC);
-                    canNguyetDuc.ThanSat.Add(Constants.ThanSat.NGUYET_DUC, Constants.ThanSat.NGUYET_DUC);
-
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Dinh).AddThanSat(Constants.ThanSat.THIEN_DUC);
+                    
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Binh).AddThanSat(Constants.ThanSat.NGUYET_DUC);
+                    
                     break;
                 case ChiEnum.Mao:
-                    chiThienDuc = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Than);
-                    chiThienDuc.ThanSat.Add(Constants.ThanSat.THIEN_DUC, Constants.ThanSat.THIEN_DUC);
+                    TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Than).AddThanSat(Constants.ThanSat.THIEN_DUC);
 
-                    canNguyetDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Giap);
-                    canNguyetDuc.ThanSat.Add(Constants.ThanSat.NGUYET_DUC, Constants.ThanSat.NGUYET_DUC);
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Giap).AddThanSat(Constants.ThanSat.NGUYET_DUC);
 
                     break;
                 case ChiEnum.Thin:
-                    canThienDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Nham);
-                    canThienDuc.ThanSat.Add(Constants.ThanSat.THIEN_DUC, Constants.ThanSat.THIEN_DUC);
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Nham).AddThanSat(Constants.ThanSat.THIEN_DUC);
 
-                    canNguyetDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Nham);
-                    canNguyetDuc.ThanSat.Add(Constants.ThanSat.NGUYET_DUC, Constants.ThanSat.NGUYET_DUC);
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Nham).AddThanSat(Constants.ThanSat.NGUYET_DUC);
+
                     break;
                 case ChiEnum.Ty:
-                    canThienDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Tan);
-                    canThienDuc.ThanSat.Add(Constants.ThanSat.THIEN_DUC, Constants.ThanSat.THIEN_DUC);
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Tan).AddThanSat(Constants.ThanSat.THIEN_DUC);
 
-                    canNguyetDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Canh);
-                    canNguyetDuc.ThanSat.Add(Constants.ThanSat.NGUYET_DUC, Constants.ThanSat.NGUYET_DUC);
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Canh).AddThanSat(Constants.ThanSat.NGUYET_DUC);
+
                     break;
                 case ChiEnum.Ngo:
-                    chiThienDuc = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Hoi);
-                    chiThienDuc.ThanSat.Add(Constants.ThanSat.THIEN_DUC, Constants.ThanSat.THIEN_DUC);
+                    TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Hoi).AddThanSat(Constants.ThanSat.THIEN_DUC);
 
-                    canNguyetDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Binh);
-                    canNguyetDuc.ThanSat.Add(Constants.ThanSat.NGUYET_DUC, Constants.ThanSat.NGUYET_DUC);
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Binh).AddThanSat(Constants.ThanSat.NGUYET_DUC);
+
                     break;
                 case ChiEnum.Mui:
-                    canThienDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Giap);
-                    canThienDuc.ThanSat.Add(Constants.ThanSat.THIEN_DUC, Constants.ThanSat.THIEN_DUC);
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Giap).AddThanSat(Constants.ThanSat.THIEN_DUC);
 
-                    canNguyetDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Giap);
-                    canNguyetDuc.ThanSat.Add(Constants.ThanSat.NGUYET_DUC, Constants.ThanSat.NGUYET_DUC);
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Giap).AddThanSat(Constants.ThanSat.NGUYET_DUC);
+                    
                     break;
                 case ChiEnum.Than:
-                    canThienDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Quy);
-                    canThienDuc.ThanSat.Add(Constants.ThanSat.THIEN_DUC, Constants.ThanSat.THIEN_DUC);
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Quy).AddThanSat(Constants.ThanSat.THIEN_DUC);
 
-                    canNguyetDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Nham);
-                    canNguyetDuc.ThanSat.Add(Constants.ThanSat.NGUYET_DUC, Constants.ThanSat.NGUYET_DUC);
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Nham).AddThanSat(Constants.ThanSat.NGUYET_DUC);
+                    
                     break;
                 case ChiEnum.Dau:
-                    chiThienDuc = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Dan);
-                    chiThienDuc.ThanSat.Add(Constants.ThanSat.THIEN_DUC, Constants.ThanSat.THIEN_DUC);
+                    TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Dan).AddThanSat(Constants.ThanSat.THIEN_DUC);
 
-                    canNguyetDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Canh);
-                    canNguyetDuc.ThanSat.Add(Constants.ThanSat.NGUYET_DUC, Constants.ThanSat.NGUYET_DUC);
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Canh).AddThanSat(Constants.ThanSat.NGUYET_DUC);
+                    
                     break;
                 case ChiEnum.Tuat:
-                    canThienDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Binh);
-                    canThienDuc.ThanSat.Add(Constants.ThanSat.THIEN_DUC, Constants.ThanSat.THIEN_DUC);
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Binh).AddThanSat(Constants.ThanSat.THIEN_DUC);
 
-                    canNguyetDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Binh);
-                    canNguyetDuc.ThanSat.Add(Constants.ThanSat.NGUYET_DUC, Constants.ThanSat.NGUYET_DUC);
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Binh).AddThanSat(Constants.ThanSat.NGUYET_DUC);
+
                     break;
                 case ChiEnum.Hoi:
-                    canThienDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.At);
-                    canThienDuc.ThanSat.Add(Constants.ThanSat.THIEN_DUC, Constants.ThanSat.THIEN_DUC);
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.At).AddThanSat(Constants.ThanSat.THIEN_DUC);
 
-                    canNguyetDuc = TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Giap);
-                    canNguyetDuc.ThanSat.Add(Constants.ThanSat.NGUYET_DUC, Constants.ThanSat.NGUYET_DUC);
+                    TongHopCanChi.MuoiThienCan.Find(u => u.Can == CanEnum.Giap).AddThanSat(Constants.ThanSat.NGUYET_DUC);
+                    
                     break;
                 default:
                     break;
@@ -445,6 +410,47 @@ namespace Business
             if (dc != null)
             {
                 dc.ThanSat.Add(Constants.ThanSat.THIEN_Y, Constants.ThanSat.THIEN_Y);
+            }
+        }
+
+        private void DichMa()
+        {
+            var chiNamNgay = new List<ChiEnum> {
+                this.TTM.LaSoCuaToi.TuTru[Constants.TRU_NAM].DiaChi.Ten,
+                this.TTM.LaSoCuaToi.TuTru[Constants.TRU_NGAY].DiaChi.Ten};
+
+            ChiEnum dichMa = ChiEnum.None;
+            if (chiNamNgay.Contains(ChiEnum.Dan)
+                || chiNamNgay.Contains(ChiEnum.Ngo)
+                || chiNamNgay.Contains(ChiEnum.Tuat))
+            {
+                dichMa = ChiEnum.Than;
+            }
+
+            if (chiNamNgay.Contains(ChiEnum.Ty)
+                || chiNamNgay.Contains(ChiEnum.Dau)
+                || chiNamNgay.Contains(ChiEnum.Suu))
+            {
+                dichMa = ChiEnum.Hoi;
+            }
+
+            if (chiNamNgay.Contains(ChiEnum.Than)
+                || chiNamNgay.Contains(ChiEnum.Ti)
+                || chiNamNgay.Contains(ChiEnum.Thin))
+            {
+                dichMa = ChiEnum.Dan;
+            }
+
+            if (chiNamNgay.Contains(ChiEnum.Hoi)
+                || chiNamNgay.Contains(ChiEnum.Mao)
+                || chiNamNgay.Contains(ChiEnum.Mui))
+            {
+                dichMa = ChiEnum.Ty;
+            }
+
+            if (dichMa != ChiEnum.None)
+            {
+
             }
         }
     }

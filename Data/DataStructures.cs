@@ -103,28 +103,42 @@ namespace Data
         Khac
     }
 
+    public class TruCanChiBase
+    {
+        public Dictionary<string, object> ThuocTinh { get; set; }
+        public Dictionary<string, object> ThanSat { get; set; }
+
+        public TruCanChiBase()
+        {
+            this.ThuocTinh = new Dictionary<string, object>();
+            this.ThanSat = new Dictionary<string, object>();
+        }
+
+        public void AddThanSat(string thansat)
+        {
+            if (!this.ThanSat.ContainsKey(thansat))
+            {
+                this.ThanSat.Add(thansat, thansat);
+            }
+        }
+    }
+
     /// <summary>
     /// DiaChi with name and hidden Can
     /// </summary>
-    public class DiaChi
+    public class DiaChi : TruCanChiBase
     {
         public ChiEnum Ten { get; private set; }
         public ThienCan BanKhi { get; private set; }
         public ThienCan TrungKhi { get; private set; }
         public ThienCan TapKhi { get; private set; }
-        public Dictionary<string, object> ThuocTinh { get; set; }
-        public Dictionary<string, object> ThanSat { get; set; }
-
-
-        public DiaChi(ChiEnum chi, ThienCan bankhi, ThienCan trungkhi, ThienCan tapkhi)
+        
+        public DiaChi(ChiEnum chi, ThienCan bankhi, ThienCan trungkhi, ThienCan tapkhi) : base()
         {
             this.Ten = chi;
             this.BanKhi = bankhi;
             this.TrungKhi = trungkhi;
             this.TapKhi = tapkhi;
-
-            this.ThuocTinh = new Dictionary<string, object>();
-            this.ThanSat = new Dictionary<string, object>();
         }
 
     }
@@ -132,26 +146,14 @@ namespace Data
     /// <summary>
     /// ThienCan with name and NguHanh, Am Duong
     /// </summary>
-    public class ThienCan
+    public class ThienCan : TruCanChiBase
     {
         public CanEnum Can { get; private set; }
         public NguHanhEnum NguHanh { get; private set; }
         public AmDuongEnum AmDuong { get; private set; }
         public ThapThanEnum ThapThan { get; set; }
-        public Dictionary<string, object> ThuocTinh { get; set; }
-        public Dictionary<string, object> ThanSat { get; set; }
 
-
-        private ThienCan(CanEnum can, NguHanhEnum nguHanh, AmDuongEnum amDuong)
-        {
-            this.Can = can;
-            this.NguHanh = nguHanh;
-            this.AmDuong = amDuong;
-            this.ThapThan = ThapThanEnum.None;
-            this.ThanSat = new Dictionary<string, object>();
-        }
-
-        public ThienCan(CanEnum can)
+        public ThienCan(CanEnum can) : base()
         {
             this.Can = can;
             Init();
@@ -208,7 +210,6 @@ namespace Data
             }
 
             this.ThapThan = ThapThanEnum.None;
-            this.ThuocTinh = new Dictionary<string, object>();
         }
     }
 
@@ -313,21 +314,15 @@ namespace Data
     /// <summary>
     /// Represent one Tru
     /// </summary>
-    public class Tru
+    public class Tru : TruCanChiBase
     {
         public ThienCan ThienCan { get; private set; }
         public DiaChi DiaChi { get; private set; }
 
-        public Dictionary<string,object> ThuocTinh { get; set; }
-        public Dictionary<string, object> ThanSat { get; set; }
-
-        public Tru(ThienCan can, DiaChi chi)
+        public Tru(ThienCan can, DiaChi chi) : base()
         {
             this.ThienCan = can;
             this.DiaChi = chi;
-
-            this.ThuocTinh = new Dictionary<string, object>();
-            this.ThanSat = new Dictionary<string, object>();
         }
     }
 
