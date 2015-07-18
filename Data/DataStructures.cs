@@ -319,7 +319,7 @@ namespace Data
         public DiaChi DiaChi { get; private set; }
 
         public Dictionary<string,object> ThuocTinh { get; set; }
-
+        public Dictionary<string, object> ThanSat { get; set; }
 
         public Tru(ThienCan can, DiaChi chi)
         {
@@ -327,6 +327,7 @@ namespace Data
             this.DiaChi = chi;
 
             this.ThuocTinh = new Dictionary<string, object>();
+            this.ThanSat = new Dictionary<string, object>();
         }
     }
 

@@ -196,7 +196,7 @@ namespace Business
                 || LookUpTable.IsTruMatched(truNgay, CanEnum.Mau, ChiEnum.Tuat)
                 || LookUpTable.IsTruMatched(truNgay, CanEnum.Canh, ChiEnum.Tuat))
             {
-                truNgay.DiaChi.ThanSat.Add(Constants.ThanSat.KHOI_CANH_QUY_NHAN, Constants.ThanSat.KHOI_CANH_QUY_NHAN);
+                truNgay.ThanSat.Add(Constants.ThanSat.KHOI_CANH_QUY_NHAN, Constants.ThanSat.KHOI_CANH_QUY_NHAN);
             }
         }
 
