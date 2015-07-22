@@ -104,16 +104,8 @@ namespace Business
                 {
                     lucHop = NguHanhEnum.Thuy;
                 }
-
-                if (!diaChi1.ThuocTinh.Keys.Contains(thuocTinh))
-                {
-                    diaChi1.ThuocTinh.Add(thuocTinh, lucHop);
-                }
-
-                if (!diaChi2.ThuocTinh.Keys.Contains(thuocTinh))
-                {
-                    diaChi2.ThuocTinh.Add(thuocTinh, lucHop);
-                }
+                diaChi1.AddThuocTinh(thuocTinh, lucHop);
+                diaChi2.AddThuocTinh(thuocTinh, lucHop);
 
             }
         }
@@ -182,17 +174,8 @@ namespace Business
                 {
                     lucXung = Constants.DiaChiLucXung.TY_HOI;
                 }
-
-                if (!diaChi1.ThuocTinh.Keys.Contains(thuocTinh))
-                {
-                    diaChi1.ThuocTinh.Add(thuocTinh, lucXung);
-                }
-
-                if (!diaChi2.ThuocTinh.Keys.Contains(thuocTinh))
-                {
-                    diaChi2.ThuocTinh.Add(thuocTinh, lucXung);
-                }
-
+                diaChi1.AddThuocTinh(thuocTinh, lucXung);
+                diaChi2.AddThuocTinh(thuocTinh, lucXung);
             }
         }
     }
@@ -260,17 +243,8 @@ namespace Business
                 {
                     lucHai = Constants.DiaChiLucHai.THAN_HOI;
                 }
-
-                if (!diaChi1.ThuocTinh.Keys.Contains(thuocTinh))
-                {
-                    diaChi1.ThuocTinh.Add(thuocTinh, lucHai);
-                }
-
-                if (!diaChi2.ThuocTinh.Keys.Contains(thuocTinh))
-                {
-                    diaChi2.ThuocTinh.Add(thuocTinh, lucHai);
-                }
-
+                diaChi1.AddThuocTinh(thuocTinh, lucHai);
+                diaChi2.AddThuocTinh(thuocTinh, lucHai);
             }
         }
     }
@@ -353,35 +327,19 @@ namespace Business
 
             if (xuan.Contains(dc.Ten))
             {
-                if (!dc.ThuocTinh.Keys.Contains(thuocTinh))
-                {
-                    dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Moc);
-                }
-                
+                dc.AddThuocTinh(thuocTinh, NguHanhEnum.Moc);   
             }
             else if (ha.Contains(dc.Ten))
             {
-                if (!dc.ThuocTinh.Keys.Contains(thuocTinh))
-                {
-                    dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Hoa);
-                }
-                
+                dc.AddThuocTinh(thuocTinh, NguHanhEnum.Hoa);
             }
             else if (thu.Contains(dc.Ten))
             {
-                if (!dc.ThuocTinh.Keys.Contains(thuocTinh))
-                {
-                    dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Kim);
-                }
-                
+                dc.AddThuocTinh(thuocTinh, NguHanhEnum.Kim);
             }
             else if (dong.Contains(dc.Ten))
             {
-                if (!dc.ThuocTinh.Keys.Contains(thuocTinh))
-                {
-                    dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Thuy);
-                }
-                
+                dc.AddThuocTinh(thuocTinh, NguHanhEnum.Thuy);
             }
         }
     }
@@ -464,32 +422,19 @@ namespace Business
 
             if (hoa.Contains(dc.Ten))
             {
-                if (!dc.ThuocTinh.Keys.Contains(thuocTinh))
-                {
-                    dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Hoa);
-                }
-                
+                dc.AddThuocTinh(thuocTinh, NguHanhEnum.Hoa);
             }
             else if (kim.Contains(dc.Ten))
             {
-                if (!dc.ThuocTinh.Keys.Contains(thuocTinh))
-                {
-                    dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Kim);
-                }
+                dc.AddThuocTinh(thuocTinh, NguHanhEnum.Kim);
             }
             else if (thuy.Contains(dc.Ten))
             {
-                if (!dc.ThuocTinh.Keys.Contains(thuocTinh))
-                {
-                    dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Thuy);
-                }
+                dc.AddThuocTinh(thuocTinh, NguHanhEnum.Thuy);
             }
             else if (moc.Contains(dc.Ten))
             {
-                if (!dc.ThuocTinh.Keys.Contains(thuocTinh))
-                {
-                    dc.ThuocTinh.Add(thuocTinh, NguHanhEnum.Moc);
-                }
+                dc.AddThuocTinh(thuocTinh, NguHanhEnum.Moc);
             }
         }
     }
@@ -532,16 +477,8 @@ namespace Business
                 {
                     //Tu Hinh se la thuoc tinh cua Tru. 
                     //This is a work-around.
-                    if (!currTru.ThuocTinh.ContainsKey(Constants.ThuocTinh.TU_HINH))
-                    {
-                        currTru.ThuocTinh.Add(Constants.ThuocTinh.TU_HINH, Constants.DiaChiTuongHinh.TU_HINH);
-                    }
-
-
-                    if (!nextTru.ThuocTinh.ContainsKey(Constants.ThuocTinh.TU_HINH))
-                    {
-                        nextTru.ThuocTinh.Add(Constants.ThuocTinh.TU_HINH, Constants.DiaChiTuongHinh.TU_HINH);
-                    }
+                    currTru.AddThuocTinh(Constants.ThuocTinh.TU_HINH, Constants.DiaChiTuongHinh.TU_HINH);
+                    nextTru.AddThuocTinh(Constants.ThuocTinh.TU_HINH, Constants.DiaChiTuongHinh.TU_HINH);
                 }
             }
         }
@@ -560,8 +497,8 @@ namespace Business
                 ti = this.TuTru[tiId].DiaChi;
                 mao = this.TuTru[maoId].DiaChi;
                 var thuocTinh = Constants.ThuocTinh.NHI_HINH;
-                ti.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongHinh.NHI_HINH);
-                mao.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongHinh.NHI_HINH);
+                ti.AddThuocTinh(thuocTinh, Constants.DiaChiTuongHinh.NHI_HINH);
+                mao.AddThuocTinh(thuocTinh, Constants.DiaChiTuongHinh.NHI_HINH);
             }
         }
 
@@ -591,15 +528,15 @@ namespace Business
 
                 if (dantythan.Contains(chi1))
                 {
-                    dc1.ThuocTinh.Add(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.DAN_TY_THAN);
-                    dc2.ThuocTinh.Add(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.DAN_TY_THAN);
-                    dc3.ThuocTinh.Add(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.DAN_TY_THAN);
+                    dc1.AddThuocTinh(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.DAN_TY_THAN);
+                    dc2.AddThuocTinh(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.DAN_TY_THAN);
+                    dc3.AddThuocTinh(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.DAN_TY_THAN);
                 }
                 else if (suutuatmui.Contains(chi1))
                 {
-                    dc1.ThuocTinh.Add(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.SUU_TUAT_MUI);
-                    dc2.ThuocTinh.Add(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.SUU_TUAT_MUI);
-                    dc3.ThuocTinh.Add(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.SUU_TUAT_MUI);
+                    dc1.AddThuocTinh(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.SUU_TUAT_MUI);
+                    dc2.AddThuocTinh(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.SUU_TUAT_MUI);
+                    dc3.AddThuocTinh(Constants.ThuocTinh.TAM_HINH, Constants.DiaChiTuongHinh.SUU_TUAT_MUI);
                 }
                
             }
@@ -648,38 +585,38 @@ namespace Business
                     case ChiEnum.None:
                         break;
                     case ChiEnum.Ti:
-                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_TI);
+                        dc.AddThuocTinh(thuocTinh, Constants.DiaChiTuongLien.TAM_TI);
                         break;
                     case ChiEnum.Suu:
-                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_SUU);
+                        dc.AddThuocTinh(thuocTinh, Constants.DiaChiTuongLien.TAM_SUU);
                         break;
                     case ChiEnum.Dan:
-                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_DAN);
+                        dc.AddThuocTinh(thuocTinh, Constants.DiaChiTuongLien.TAM_DAN);
                         break;
                     case ChiEnum.Mao:
-                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_MAO);
+                        dc.AddThuocTinh(thuocTinh, Constants.DiaChiTuongLien.TAM_MAO);
                         break;
                     case ChiEnum.Thin:
                         break;
                     case ChiEnum.Ty:
-                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_TY);
+                        dc.AddThuocTinh(thuocTinh, Constants.DiaChiTuongLien.TAM_TY);
                         break;
                     case ChiEnum.Ngo:
-                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_NGO);
+                        dc.AddThuocTinh(thuocTinh, Constants.DiaChiTuongLien.TAM_NGO);
                         break;
                     case ChiEnum.Mui:
-                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_MUI);
+                        dc.AddThuocTinh(thuocTinh, Constants.DiaChiTuongLien.TAM_MUI);
                         break;
                     case ChiEnum.Than:
-                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_THAN);
+                        dc.AddThuocTinh(thuocTinh, Constants.DiaChiTuongLien.TAM_THAN);
                         break;
                     case ChiEnum.Dau:
-                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_DAU);
+                        dc.AddThuocTinh(thuocTinh, Constants.DiaChiTuongLien.TAM_DAU);
                         break;
                     case ChiEnum.Tuat:
                         break;
                     case ChiEnum.Hoi:
-                        dc.ThuocTinh.Add(thuocTinh, Constants.DiaChiTuongLien.TAM_HOI);
+                        dc.AddThuocTinh(thuocTinh, Constants.DiaChiTuongLien.TAM_HOI);
                         break;
                     default:
                         break;

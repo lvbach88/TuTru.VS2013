@@ -286,7 +286,7 @@ namespace Business
             }
             if (dc != null)
             {
-                dc.ThanSat.Add(Constants.ThanSat.KIM_DU, Constants.ThanSat.KIM_DU);
+                dc.AddThanSat(Constants.ThanSat.KIM_DU);
             }
         }
 
@@ -300,50 +300,45 @@ namespace Business
             DiaChi dc = null;
             if (ngayNam.Contains(CanEnum.Giap))
             {
-                dc = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ty);
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ty).AddThanSat(Constants.ThanSat.VAN_XUONG);
             }
             if (ngayNam.Contains(CanEnum.At))
             {
-                dc = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ngo);
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ngo).AddThanSat(Constants.ThanSat.VAN_XUONG);
             }
             if (ngayNam.Contains(CanEnum.Binh))
             {
-                dc = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Than);
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Than).AddThanSat(Constants.ThanSat.VAN_XUONG);
             }
             if (ngayNam.Contains(CanEnum.Dinh))
             {
-                dc = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Dau);
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Dau).AddThanSat(Constants.ThanSat.VAN_XUONG);
             }
             if (ngayNam.Contains(CanEnum.Mau))
             {
-                dc = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Than);
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Than).AddThanSat(Constants.ThanSat.VAN_XUONG);
             }
             if (ngayNam.Contains(CanEnum.Ky))
             {
-                dc = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Dau);
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Dau).AddThanSat(Constants.ThanSat.VAN_XUONG);
             }
             if (ngayNam.Contains(CanEnum.Canh))
             {
-                dc = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Hoi);
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Hoi).AddThanSat(Constants.ThanSat.VAN_XUONG);
             }
             if (ngayNam.Contains(CanEnum.Tan))
             {
-                dc = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ti);
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ti).AddThanSat(Constants.ThanSat.VAN_XUONG);
             }
             if (ngayNam.Contains(CanEnum.Nham))
             {
-                dc = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Dan);
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Dan).AddThanSat(Constants.ThanSat.VAN_XUONG);
             }
             if (ngayNam.Contains(CanEnum.Quy))
             {
-                dc = TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Mao);
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Mao).AddThanSat(Constants.ThanSat.VAN_XUONG);
             }
             
-
-            if (dc != null)
-            {
-                dc.ThanSat.Add(Constants.ThanSat.VAN_XUONG, Constants.ThanSat.VAN_XUONG);
-            }
         }
 
         private void ThienY()
@@ -397,7 +392,7 @@ namespace Business
 
             if (dc != null)
             {
-                dc.ThanSat.Add(Constants.ThanSat.THIEN_Y, Constants.ThanSat.THIEN_Y);
+                dc.AddThanSat(Constants.ThanSat.THIEN_Y);
             }
         }
 

@@ -121,6 +121,22 @@ namespace Data
                 this.ThanSat.Add(thansat, thansat);
             }
         }
+
+        public void AddThuocTinh(string tenThuocTinh)
+        {
+            if (!this.ThuocTinh.ContainsKey(tenThuocTinh))
+            {
+                this.ThuocTinh.Add(tenThuocTinh, tenThuocTinh);
+            }
+        }
+
+        public void AddThuocTinh(string tenThuocTinh, object thuocTinh)
+        {
+            if (!this.ThuocTinh.ContainsKey(tenThuocTinh))
+            {
+                this.ThuocTinh.Add(tenThuocTinh, thuocTinh);
+            }
+        }
     }
 
     /// <summary>
