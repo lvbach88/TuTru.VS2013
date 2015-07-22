@@ -94,6 +94,11 @@ namespace Data
             public static string VAN_XUONG = "VAN_XUONG";
             public static string THIEN_Y = "THIEN_Y";
             public static string DICH_MA = "DICH_MA";
+            public static string HOA_CAI = "HOA_CAI";
+            public static string TUONG_TINH = "TUONG_TINH";
+            public static string DAO_HOA = "DAO_HOA";
+            public static string DAO_HOA_SAT = "DAO_HOA_SAT";
+            public static string KIEP_SAT = "KIEP_SAT";
         }
 
         public static class DiaChiLucHop
