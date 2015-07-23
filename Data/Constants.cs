@@ -80,6 +80,8 @@ namespace Data
             #endregion Tuong Hinh
 
             public static string TUONG_LIEN = "TUONG_LIEN";
+
+            public static string THIEN_CAN_NGU_HOP = "NGU_HOP";
         }
 
         public static class ThanSat

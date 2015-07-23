@@ -32,6 +32,75 @@ namespace Business
         abstract public void SetLaw();
     }
 
+    public class ThienCanNguHop : InteractionLaws
+    {
+        public ThienCanNguHop(TuTruMap ttm)
+        {
+            base.Init(ttm);
+        }
+
+        public override void SetLaw()
+        {
+            CheckNguHop(CanEnum.Giap, CanEnum.Ky);
+            CheckNguHop(CanEnum.At, CanEnum.Canh);
+            CheckNguHop(CanEnum.Binh, CanEnum.Tan);
+            CheckNguHop(CanEnum.Dinh, CanEnum.Nham);
+            CheckNguHop(CanEnum.Mau, CanEnum.Quy);
+        }
+
+        private void CheckNguHop(CanEnum can1, CanEnum can2)
+        {
+            var can1Id = TatcaTru.FindIndex(u => u.ThienCan.Can == can1);
+            var can2Id = TatcaTru.FindIndex(u => u.ThienCan.Can == can2);
+            
+
+
+            if (can1Id != -1 && can2Id != -1)
+            {
+                var giapKy = new List<CanEnum> { CanEnum.Giap, CanEnum.Ky };
+                var atCanh = new List<CanEnum> { CanEnum.At, CanEnum.Canh };
+                var binhTan = new List<CanEnum> { CanEnum.Binh, CanEnum.Tan };
+                var dinhNham = new List<CanEnum> { CanEnum.Dinh, CanEnum.Nham };
+                var mauQuy = new List<CanEnum> { CanEnum.Mau, CanEnum.Quy };
+
+                if (giapKy.Contains(can1))
+                {
+                    SetNguHop(can1, NguHanhEnum.Tho);
+                    SetNguHop(can2, NguHanhEnum.Tho);
+                }
+
+                if (atCanh.Contains(can1))
+                {
+                    SetNguHop(can1, NguHanhEnum.Kim);
+                    SetNguHop(can2, NguHanhEnum.Kim);
+                }
+
+                if (binhTan.Contains(can1))
+                {
+                    SetNguHop(can1, NguHanhEnum.Thuy);
+                    SetNguHop(can2, NguHanhEnum.Thuy);
+                }
+
+                if (dinhNham.Contains(can1))
+                {
+                    SetNguHop(can1, NguHanhEnum.Moc);
+                    SetNguHop(can2, NguHanhEnum.Moc);
+                }
+
+                if (mauQuy.Contains(can1))
+                {
+                    SetNguHop(can1, NguHanhEnum.Hoa);
+                    SetNguHop(can2, NguHanhEnum.Hoa);
+                }
+            }
+        }
+
+        private void SetNguHop(CanEnum can, NguHanhEnum nh)
+        {
+            TongHopCanChi.MuoiThienCan.Find(u => u.Can == can).AddThuocTinh(Constants.ThuocTinh.THIEN_CAN_NGU_HOP, nh);
+        }
+    }
+
     public class DiaChiLucHop : InteractionLaws
     {
         public DiaChiLucHop(TuTruMap ttm)
