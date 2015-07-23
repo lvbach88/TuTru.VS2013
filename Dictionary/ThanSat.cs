@@ -524,6 +524,72 @@ namespace Business
             }
         }
 
+        private void KhongVong()
+        {
+            Tru ngay = this.TTM.LaSoCuaToi.TuTru[Constants.TRU_NGAY];
+
+            int canNgayId = TongHopCanChi.MuoiThienCan.FindIndex(u => u.Can == ngay.ThienCan.Can);
+            int quyId = TongHopCanChi.MuoiThienCan.FindIndex(u => u.Can == CanEnum.Quy);
+
+            int steps = quyId - canNgayId;
+            int chiNgayId = TongHopCanChi.MuoiHaiDiaChi.FindIndex(u => u.Ten == ngay.DiaChi.Ten);
+            int n = TongHopCanChi.MuoiHaiDiaChi.Count;
+
+            int kv1 = (chiNgayId + steps + 1) % n;
+            int kv2 = (chiNgayId + steps + 2) % n;
+
+            TongHopCanChi.MuoiHaiDiaChi[kv1].AddThanSat(Constants.ThanSat.KHONG_VONG);
+            TongHopCanChi.MuoiHaiDiaChi[kv2].AddThanSat(Constants.ThanSat.KHONG_VONG);
+        }
+
+        private void ThienXa()
+        {
+            var chiThang = this.TTM.LaSoCuaToi.TuTru[Constants.TRU_THANG].DiaChi.Ten;
+
+            switch (chiThang)
+            {
+                case ChiEnum.None:
+                    break;
+                case ChiEnum.Dan:
+                case ChiEnum.Mao:
+                case ChiEnum.Thin:
+                    SetThienXa(CanEnum.Mau, ChiEnum.Dan);
+                    break;
+                case ChiEnum.Ty:
+                case ChiEnum.Ngo:
+                case ChiEnum.Mui:
+                    SetThienXa(CanEnum.Giap, ChiEnum.Ngo);
+                    break;
+                case ChiEnum.Than:
+                case ChiEnum.Dau:
+                case ChiEnum.Tuat:
+                    SetThienXa(CanEnum.Mau, ChiEnum.Than);
+                    break;
+                case ChiEnum.Hoi:
+                case ChiEnum.Ti:
+                case ChiEnum.Suu:
+                    SetThienXa(CanEnum.Giap, ChiEnum.Ti);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void SetThienXa(CanEnum can, ChiEnum chi)
+        {
+            TruCollection law = new TruCollection(this.TTM);
+
+            foreach (var item in law.TatcaTru)
+            {
+                if (item.ThienCan.Can == can && item.DiaChi.Ten == chi)
+                {
+                    item.AddThanSat(Constants.ThanSat.THIEN_XA);  
+                }
+            }
+
+
+        }
+
         public void SetThanSat()
         {
             ThienAtQuyNhan();
@@ -537,6 +603,8 @@ namespace Business
             DichMa_HoaCai_TuongTinh_KiepSat();
             Dao_Hoa();
             Dao_Hoa_Sat();
+            KhongVong();
+            ThienXa();
         }
     }
 }

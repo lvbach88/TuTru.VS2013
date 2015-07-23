@@ -7,12 +7,21 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    public abstract class InteractionLaws
+    public class TruCollection
     {
         public List<string> GeneralGuidelines { get; private set; }
         public List<Tru> TatcaTru { get; private set; }
 
         public List<Tru> TuTru { get; private set; }
+
+        public TruCollection()
+        {
+        }
+
+        public TruCollection(TuTruMap ttm)
+        {
+            this.Init(ttm);
+        }
 
         protected void Init(TuTruMap ttm)
         {
@@ -26,13 +35,16 @@ namespace Business
             TatcaTru.Add(laso.CungMenh);
             TatcaTru.Add(laso.ThaiNguyen);
             TatcaTru.Add(ttm.DaiVanHienTai);
-            TatcaTru.Add(LookUpTable.TruOfTheYear());
+            TatcaTru.Add(ttm.LuuNien);
         }
 
-        abstract public void SetLaw();
+        public virtual void SetLaw() 
+        {
+            throw new NotImplementedException();
+        }
     }
 
-    public class ThienCanNguHop : InteractionLaws
+    public class ThienCanNguHop : TruCollection
     {
         public ThienCanNguHop(TuTruMap ttm)
         {
@@ -101,7 +113,7 @@ namespace Business
         }
     }
 
-    public class DiaChiLucHop : InteractionLaws
+    public class DiaChiLucHop : TruCollection
     {
         public DiaChiLucHop(TuTruMap ttm)
         {
@@ -180,7 +192,7 @@ namespace Business
         }
     }
 
-    public class DiaChiLucXung : InteractionLaws
+    public class DiaChiLucXung : TruCollection
     {
         public DiaChiLucXung(TuTruMap ttm)
         {
@@ -249,7 +261,7 @@ namespace Business
         }
     }
 
-    public class DiaChiLucHai : InteractionLaws
+    public class DiaChiLucHai : TruCollection
     {
         public DiaChiLucHai(TuTruMap ttm)
         {
@@ -318,7 +330,7 @@ namespace Business
         }
     }
 
-    public class DiaChiTamHoi : InteractionLaws
+    public class DiaChiTamHoi : TruCollection
     {
         public DiaChiTamHoi(TuTruMap ttm)
         {
@@ -413,7 +425,7 @@ namespace Business
         }
     }
 
-    public class DiaChiTamHop : InteractionLaws
+    public class DiaChiTamHop : TruCollection
     {
         public DiaChiTamHop(TuTruMap ttm)
         {
@@ -508,7 +520,7 @@ namespace Business
         }
     }
 
-    public class DiaChiTuongHinh : InteractionLaws
+    public class DiaChiTuongHinh : TruCollection
     {
         public DiaChiTuongHinh(TuTruMap ttm)
         {
@@ -615,7 +627,7 @@ namespace Business
         #endregion Tam Hinh
     }
 
-    public class DiaChiTuongLien : InteractionLaws
+    public class DiaChiTuongLien : TruCollection
     {
         public DiaChiTuongLien(TuTruMap ttm)
         {

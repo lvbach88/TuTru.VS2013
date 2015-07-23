@@ -101,6 +101,8 @@ namespace Data
             public static string DAO_HOA = "DAO_HOA";
             public static string DAO_HOA_SAT = "DAO_HOA_SAT";
             public static string KIEP_SAT = "KIEP_SAT";
+            public static string KHONG_VONG = "KHONG_VONG";
+            public static string THIEN_XA = "THIEN_XA";
         }
 
         public static class DiaChiLucHop

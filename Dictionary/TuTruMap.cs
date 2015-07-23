@@ -12,6 +12,7 @@ namespace Business
 
         public LaSo LaSoCuaToi { get; set; }
         public Tru DaiVanHienTai { get; private set; }
+        public Tru LuuNien { get; private set; }
 
         public void InitLaSo( string gioiTinh,
                                 string canNam, string chiNam,
@@ -195,6 +196,7 @@ namespace Business
                 this.DaiVanHienTai = this.LaSoCuaToi.DaiVan[0];
             }
 
+            this.LuuNien = LookUpTable.TruOfTheYear();
         }
 
         public void CreateTieuVan()
