@@ -16,6 +16,19 @@ namespace Business
             this.TTM = ttm;
         }
 
+        private void SetThanSatTru(CanEnum can, ChiEnum chi, string thansat)
+        {
+            TruCollection law = new TruCollection(this.TTM);
+
+            foreach (var item in law.TatcaTru)
+            {
+                if (item.ThienCan.Can == can && item.DiaChi.Ten == chi)
+                {
+                    item.AddThanSat(thansat);
+                }
+            }
+        }
+
         private void ThienAtQuyNhan()
         {
             var namNgay = new List<CanEnum> {TTM.LaSoCuaToi.TuTru[Constants.TRU_NAM].ThienCan.Can,
@@ -553,40 +566,121 @@ namespace Business
                 case ChiEnum.Dan:
                 case ChiEnum.Mao:
                 case ChiEnum.Thin:
-                    SetThienXa(CanEnum.Mau, ChiEnum.Dan);
+                    SetThanSatTru(CanEnum.Mau, ChiEnum.Dan, Constants.ThanSat.THIEN_XA);
                     break;
                 case ChiEnum.Ty:
                 case ChiEnum.Ngo:
                 case ChiEnum.Mui:
-                    SetThienXa(CanEnum.Giap, ChiEnum.Ngo);
+                    SetThanSatTru(CanEnum.Giap, ChiEnum.Ngo, Constants.ThanSat.THIEN_XA);
                     break;
                 case ChiEnum.Than:
                 case ChiEnum.Dau:
                 case ChiEnum.Tuat:
-                    SetThienXa(CanEnum.Mau, ChiEnum.Than);
+                    SetThanSatTru(CanEnum.Mau, ChiEnum.Than, Constants.ThanSat.THIEN_XA);
                     break;
                 case ChiEnum.Hoi:
                 case ChiEnum.Ti:
                 case ChiEnum.Suu:
-                    SetThienXa(CanEnum.Giap, ChiEnum.Ti);
+                    SetThanSatTru(CanEnum.Giap, ChiEnum.Ti, Constants.ThanSat.THIEN_XA);
                     break;
                 default:
                     break;
             }
         }
 
-        private void SetThienXa(CanEnum can, ChiEnum chi)
+        private void HocDuong()
         {
-            TruCollection law = new TruCollection(this.TTM);
+            CanEnum ngay = this.TTM.LaSoCuaToi.TuTru[Constants.TRU_NGAY].ThienCan.Can;
 
-            foreach (var item in law.TatcaTru)
+            ChiEnum chi = ChiEnum.None;
+            switch (ngay)
             {
-                if (item.ThienCan.Can == can && item.DiaChi.Ten == chi)
-                {
-                    item.AddThanSat(Constants.ThanSat.THIEN_XA);  
-                }
+                case CanEnum.None:
+                    break;
+                case CanEnum.Giap:
+                case CanEnum.At:
+                    chi = ChiEnum.Hoi;
+                    break;
+                case CanEnum.Binh:
+                case CanEnum.Dinh:
+                case CanEnum.Mau:
+                case CanEnum.Ky:
+                    chi = ChiEnum.Dan;
+                    break;
+                case CanEnum.Canh:
+                case CanEnum.Tan:
+                    chi = ChiEnum.Ty;
+                    break;
+                case CanEnum.Nham:
+                case CanEnum.Quy:
+                    chi = ChiEnum.Than;
+                    break;
+                default:
+                    break;
             }
 
+            if (chi != ChiEnum.None)
+            {
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == chi).AddThanSat(Constants.ThanSat.HOC_DUONG);
+            }
+        }
+
+        private void TuQuan()
+        {
+            List<CanEnum> ngayNam = new List<CanEnum>
+                            { this.TTM.LaSoCuaToi.TuTru[Constants.TRU_NGAY].ThienCan.Can,
+                                this.TTM.LaSoCuaToi.TuTru[Constants.TRU_NAM].ThienCan.Can
+                            };
+
+            if (ngayNam.Contains(CanEnum.Giap))
+            {
+                SetThanSatTru(CanEnum.Canh, ChiEnum.Dan, Constants.ThanSat.TU_QUAN);
+            }
+
+            if (ngayNam.Contains(CanEnum.At))
+            {
+                SetThanSatTru(CanEnum.Tan, ChiEnum.Mao, Constants.ThanSat.TU_QUAN);
+            }
+
+            if (ngayNam.Contains(CanEnum.Binh))
+            {
+                SetThanSatTru(CanEnum.At, ChiEnum.Ty, Constants.ThanSat.TU_QUAN);
+            }
+
+            if (ngayNam.Contains(CanEnum.Dinh))
+            {
+                SetThanSatTru(CanEnum.Mau, ChiEnum.Ngo, Constants.ThanSat.TU_QUAN);
+            }
+
+            if (ngayNam.Contains(CanEnum.Mau))
+            {
+                SetThanSatTru(CanEnum.Dinh, ChiEnum.Ty, Constants.ThanSat.TU_QUAN);
+            }
+
+            if (ngayNam.Contains(CanEnum.Ky))
+            {
+                SetThanSatTru(CanEnum.Canh, ChiEnum.Ngo, Constants.ThanSat.TU_QUAN);
+            }
+
+            if (ngayNam.Contains(CanEnum.Canh))
+            {
+                SetThanSatTru(CanEnum.Nham, ChiEnum.Than, Constants.ThanSat.TU_QUAN);
+            }
+
+            if (ngayNam.Contains(CanEnum.Tan))
+            {
+                SetThanSatTru(CanEnum.Quy, ChiEnum.Dau, Constants.ThanSat.TU_QUAN);
+            }
+
+            if (ngayNam.Contains(CanEnum.Nham))
+            {
+                SetThanSatTru(CanEnum.Quy, ChiEnum.Hoi, Constants.ThanSat.TU_QUAN);
+            }
+
+            if (ngayNam.Contains(CanEnum.Quy))
+            {
+                SetThanSatTru(CanEnum.Binh, ChiEnum.Ti, Constants.ThanSat.TU_QUAN);
+            }
 
         }
 
@@ -605,6 +699,8 @@ namespace Business
             Dao_Hoa_Sat();
             KhongVong();
             ThienXa();
+            HocDuong();
+            TuQuan();
         }
     }
 }

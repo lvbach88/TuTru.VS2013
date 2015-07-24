@@ -103,6 +103,8 @@ namespace Data
             public static string KIEP_SAT = "KIEP_SAT";
             public static string KHONG_VONG = "KHONG_VONG";
             public static string THIEN_XA = "THIEN_XA";
+            public static string HOC_DUONG = "HOC_DUONG";
+            public static string TU_QUAN = "TU_QUAN";
         }
 
         public static class DiaChiLucHop
