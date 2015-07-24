@@ -105,6 +105,10 @@ namespace Data
             public static string THIEN_XA = "THIEN_XA";
             public static string HOC_DUONG = "HOC_DUONG";
             public static string TU_QUAN = "TU_QUAN";
+            public static string KIM_THAN = "KIM_THAN";
+            public static string NGUYEN_THAN = "NGUYEN_THAN";
+            public static string TAI_SAT = "TAI_SAT";
+            public static string QUOC_AN = "QUOC_AN";
         }
 
         public static class DiaChiLucHop

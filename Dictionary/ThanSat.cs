@@ -684,6 +684,146 @@ namespace Business
 
         }
 
+        private void KimThan()
+        {
+            List<Tru> ngayGio = new List<Tru>
+            {
+                this.TTM.LaSoCuaToi.TuTru[Constants.TRU_NGAY],
+                this.TTM.LaSoCuaToi.TuTru[Constants.TRU_GIO]
+            };
+
+            foreach (var tru in ngayGio)
+            {
+                CanEnum can = tru.ThienCan.Can;
+                ChiEnum chi = tru.DiaChi.Ten;
+                if ((can == CanEnum.Tan && chi == ChiEnum.Ty)
+                    || (can == CanEnum.Quy && chi == ChiEnum.Dau)
+                    || (can == CanEnum.At && chi == ChiEnum.Suu))
+                {
+                    tru.AddThanSat(Constants.ThanSat.KIM_THAN);
+                }
+            }
+
+        }
+
+        private void NguyenThan()
+        {
+            ChiEnum nam = this.TTM.LaSoCuaToi.TuTru[Constants.TRU_NAM].DiaChi.Ten;
+            var amDuong = this.TTM.LaSoCuaToi.TuTru[Constants.TRU_NAM].ThienCan.AmDuong;
+            var gioi = this.TTM.LaSoCuaToi.GioiTinh;
+
+            int namId = TongHopCanChi.MuoiHaiDiaChi.FindIndex(u => u.Ten == nam);
+            int n = TongHopCanChi.MuoiHaiDiaChi.Count;
+
+            int nguyenthanId = -1;
+            if ((gioi == GioiTinhEnum.Nam && amDuong == AmDuongEnum.Duong)
+                || (gioi == GioiTinhEnum.Nu && amDuong == AmDuongEnum.Am))
+            {
+                nguyenthanId = (namId + 7) % n;
+            }
+            else
+            {
+                nguyenthanId = (namId + 5) % n;
+            }
+
+            TongHopCanChi.MuoiHaiDiaChi[nguyenthanId].AddThanSat(Constants.ThanSat.NGUYEN_THAN);
+        }
+
+        private void TaiSat()
+        {
+            ChiEnum nam = this.TTM.LaSoCuaToi.TuTru[Constants.TRU_NAM].DiaChi.Ten;
+
+            ChiEnum taisat = ChiEnum.None;
+            switch (nam)
+            {
+                case ChiEnum.None:
+                    break;
+
+                case ChiEnum.Dan:
+                case ChiEnum.Ngo:
+                case ChiEnum.Tuat:
+                    taisat = ChiEnum.Ti;
+                    break;
+
+                case ChiEnum.Ty:
+                case ChiEnum.Dau:
+                case ChiEnum.Suu:
+                    taisat = ChiEnum.Mao;
+                    break;
+
+                case ChiEnum.Than:
+                case ChiEnum.Ti:
+                case ChiEnum.Thin:
+                    taisat = ChiEnum.Ngo;
+                    break;
+                
+                case ChiEnum.Hoi:
+                case ChiEnum.Mao:
+                case ChiEnum.Mui:
+                    taisat = ChiEnum.Dau;
+                    break;
+
+                default:
+                    break;
+            }
+            if (taisat != ChiEnum.None)
+            {
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == taisat).AddThanSat(Constants.ThanSat.TAI_SAT);
+            }
+        }
+
+        private void QuocAn()
+        {
+            List<CanEnum> namNgay = new List<CanEnum> 
+            {
+                this.TTM.LaSoCuaToi.TuTru[Constants.TRU_NAM].ThienCan.Can,
+                this.TTM.LaSoCuaToi.TuTru[Constants.TRU_NGAY].ThienCan.Can
+            };
+
+            if (namNgay.Contains(CanEnum.Giap))
+            {
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Tuat).AddThanSat(Constants.ThanSat.QUOC_AN);
+            }
+
+            if (namNgay.Contains(CanEnum.At))
+            {
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Hoi).AddThanSat(Constants.ThanSat.QUOC_AN);
+            }
+
+            if (namNgay.Contains(CanEnum.Binh)
+                || namNgay.Contains(CanEnum.Mau))
+            {
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Suu).AddThanSat(Constants.ThanSat.QUOC_AN);
+            }
+
+            if (namNgay.Contains(CanEnum.Dinh)
+                || namNgay.Contains(CanEnum.Ky))
+            {
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Dan).AddThanSat(Constants.ThanSat.QUOC_AN);
+            }
+
+            if (namNgay.Contains(CanEnum.Canh))
+            {
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Thin).AddThanSat(Constants.ThanSat.QUOC_AN);
+            }
+
+            if (namNgay.Contains(CanEnum.Tan))
+            {
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Ty).AddThanSat(Constants.ThanSat.QUOC_AN);
+            }
+
+            if (namNgay.Contains(CanEnum.Nham))
+            {
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Mui).AddThanSat(Constants.ThanSat.QUOC_AN);
+            }
+
+            if (namNgay.Contains(CanEnum.Quy))
+            {
+                TongHopCanChi.MuoiHaiDiaChi.Find(u => u.Ten == ChiEnum.Than).AddThanSat(Constants.ThanSat.QUOC_AN);
+            }
+
+        }
+
         public void SetThanSat()
         {
             ThienAtQuyNhan();
@@ -701,6 +841,10 @@ namespace Business
             ThienXa();
             HocDuong();
             TuQuan();
+            KimThan();
+            NguyenThan();
+            TaiSat();
+            QuocAn();
         }
     }
 }
