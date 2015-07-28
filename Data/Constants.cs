@@ -109,6 +109,17 @@ namespace Data
             public static string NGUYEN_THAN = "NGUYEN_THAN";
             public static string TAI_SAT = "TAI_SAT";
             public static string QUOC_AN = "QUOC_AN";
+            public static string THIEN_LA = "THIEN_LA";
+            public static string DIA_VONG = "DIA_VONG";
+            public static string CAU = "CAU";
+            public static string GIAO = "GIAO";
+            public static string CO_THAN = "CO_THAN";
+            public static string QUA_TU = "QUA_TU";
+            public static string THAP_AC_DAI_BAI = "THAP_AC_DAI_BAI";
+            public static string AM_DUONG_SAI_THAC = "AM_DUONG_SAI_THAC";
+            public static string THAI_CUC_QUY_NHAN = "THAI_CUC_QUY_NHAN";
+            public static string DUC_THAN = "DUC_THAN";
+            public static string CACH_GIAC = "CACH_GIAC";
         }
 
         public static class DiaChiLucHop
